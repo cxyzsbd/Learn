@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>/* 
+1、
+typeof: 检测基础数据类型
+注意:检测null和数组还有对象都会返回object
+
+在JS中进行数据底层存储的时候是用二进制存储的,而且它的前三位是代表存储的数据类型,而000是代表object,
+而null正好全是0,所以它巧妙的符合object类型的存储格
+
+
+2、
+instanceof: 判断引用数据类型(对象)(返回布尔值)
+注意:instanceof不能识别出基本的数据类型,该方法适合一些条件选择或分支.
+
+console.log(arr instanceof Array);
+console.log(obj instanceof Object);
+console.log(fn instanceof Function);
+
+
+3、
+constructor:判断基本数据类型(返回布尔值)
+注意:null和undefined不能检测,判断数字时使用()
+constructor在类继承时会出错,因为Object被覆盖掉了,检测结果就不对了.
+检测数据.constructor == 数据类型
+
+4、
+Object.prototype.toString.call()
+适用于所有类型的判断检测,注意区分大小写.toString方法,在Object原型上返回数据格式
+
+
+其他:
+jquery.type(): 万能方法
+严格运算符 ===:
+
+总结:
+一般变量用typeof,已知对象类型用instanceof,
+通用方法Object.prototype.toString.call()
+jQuery项目万能方法jQuery.type()
+
+*/
+
+    </script>
+</body>
+</html>

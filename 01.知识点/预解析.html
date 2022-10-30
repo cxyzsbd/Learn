@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body></body>
+</html>
+<script>
+  /*
+              预解析： 代码在执行的时候，先编译一遍，在执行
+
+              提升变量 ：带var声明的变量
+              提升函数 ：函数整体提升
+
+              函数和变量重名: 变量名忽略
+              函数和函数重名：覆盖
+          */
+
+  // 1:函数找全局变量的时候，看执行的顺序
+  //   b();
+  //   console.log(a);
+  //   var a = 123;
+  //   console.log(a);
+  //   function b() {
+  //     console.log(a);
+  //   }
+
+  /*
+        function b() {
+        console.log(a);
+      }
+      var a ;
+      b();
+      console.log(a);
+      a = 123;
+      console.log(a);
+
+      */
+
+  //   1：变量名和函数名一样
+  //   console.log(a);
+  //   var a = 123;
+  //   console.log(a);
+  //   function a() {
+  //     console.log(a);
+  //   }
+  //   a();
+
+  /*
+       function a() {
+        console.log(a);
+      }
+      var a
+      变量和函数名重复：变量被覆盖，函数优先级高
+     console.log(a);
+       a = 123;
+     console.log(a);
+       a();
+
+    */
+
+  //   a();
+  //   console.log(a);
+  //   var a = 123;
+  //   console.log(a);
+  //   function a() {
+  //     console.log(a);
+  //   }
+
+  /*
+    //   函数是挂在在window上，所有全局作用域都能找着
+        function a() {
+            console.log(a);
+        }
+        var a;
+        a();
+        console.log(a);
+        var a = 123;
+        console.log(a);
+    */
+  //   a();
+  //   function a() {
+  //     console.log(111);
+  //   }
+  //   a();
+  //   function a() {
+  //     console.log(222);
+  //   }
+
+  /*
+      函数名一样覆盖（下面覆盖上面）
+       function a() {
+        console.log(111);
+      }
+       function a() {
+        console.log(222);
+      }
+
+      a();
+      a();
+
+
+    */
+
+  //   a();
+  //   function a() {
+  //     console.log(111);
+  //   }
+  //   console.log(b);
+
+  //   b();
+  //   var b = function () {
+  //     console.log(222);
+  //   };
+
+  /*
+    function a() {
+        console.log(111);
+      }
+   var b 
+  
+   a();
+   console.log(b);
+   b();
+  function{
+        console.log(222);
+      }
+  */
+
+  //   a();
+  //   function a() {
+  //     console.log(111);
+  //   }
+  //   console.log(b);
+
+  //   var b = function () {
+  //     console.log(222);
+  //   };
+
+  //   b();
+
+  /* 
+  function a() {
+    console.log(111);
+  }
+  var b;
+    a();
+    console.log(b);
+    b = function () {
+    console.log(222);
+  };
+    b();
+
+  
+  */
+  //   a();
+  //   function a() {
+  //     console.log(111);
+  //   }
+
+  //   a();
+  //   var a = function () {
+  //     console.log(2222);
+  //   };
+
+  /* 
+  function a() {
+    console.log(111);
+  }
+  var a
+  a();
+  a();
+  a = function () {
+    console.log(2222);
+  };
+  
+
+  
+  */
+
+  //   a();
+  //   function a() {
+  //     console.log(111);
+  //   }
+
+  //   a();
+  //   function a() {
+  //     console.log(222);
+  //   }
+  //   a();
+  //   var a = function () {
+  //     console.log(333);
+  //   };
+  //   a();
+  //   function a() {
+  //     console.log(4444);
+  //   }
+
+  /* 
+    function a() {
+    console.log(4444);
+   }
+   var a;
+  a();
+  a();
+  a();
+
+  a = function () {
+    console.log(333);
+  };
+
+  a();
+  
+  */
+
+  //   a();
+  //   function a() {
+  //     console.log(111);
+  //   }
+  //   console.log(a);
+  //   var a = 123;
+
+  //   a();
+  //   var a = function () {
+  //     console.log(222);
+  //   };
+  //   a();
+
+  /* 
+    function a() {
+    console.log(111);
+   }
+   a();
+   console.log(a);
+    a = 123;
+    a();
+    a = function () {
+        console.log(222);
+    };
+    a();
+  */
+</script>

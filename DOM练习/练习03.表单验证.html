@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      label {
+        display: inline-block;
+        width: 60px;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      <label>name</label>
+      <input type="text" />
+      <span>6-8个字母</span>
+    </p>
+    <p>
+      <label>密码</label>
+      <input type="password" />
+      <span>6-16个数字字母下划线</span>
+    </p>
+    <p>
+      <label>电话</label>
+      <input type="tel" />
+      <span>输入11位数字</span>
+    </p>
+  </body>
+</html>
+<script>
+  /*
+        事件源    input  加span
+        事件类型  onblur
+
+        执行操作
+            判断   是否输入框有内容  value.trim().length
+            判断   是否按规则输入内容 正则test(value)
+    */
+  var input = document.querySelectorAll("input");
+  // name名
+  input[0].onblur = function () {
+    var name_value = input[0].value;
+    if (name_value.trim().length) {
+      var reg = /^[a-z]{6,8}$/;
+      var nameInfo = document.querySelectorAll("span")[0];
+
+      if (reg.test(name_value)) {
+        nameInfo.style.color = "green";
+        nameInfo.innerText = "恭喜你输入正确";
+      } else {
+        nameInfo.style.color = "red";
+        nameInfo.innerText = "输入错误，请重新输入6-8个字母";
+      }
+    } else {
+      alert("请您输入内容");
+    }
+  };
+
+  // 密码
+  input[1].onblur = function () {
+    var pass_value = input[1].value;
+    if (pass_value.trim().length) {
+      var reg = /^\w{6,18}$/;
+      var passInfo = document.querySelectorAll("span")[1];
+
+      if (reg.test(pass_value)) {
+        passInfo.style.color = "green";
+        passInfo.innerText = "恭喜你输入正确";
+      } else {
+        passInfo.style.color = "red";
+        passInfo.innerText = "输入错误，6-16个数字字母下划线";
+      }
+    } else {
+      alert("请您输入内容");
+    }
+  };
+
+
+</script>

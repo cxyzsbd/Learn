@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //数组反向显示
+      var arr = [2, 5, 8, 7, 3, 13, 45];
+      //   0 1 2 循环的次数(数组的长度除以2)
+      // arr[0]        arr[arr.length-1]
+      // arr[1]        arr[arr.length-1 - i]
+      // arr[2]        arr[arr.length-1 - i]
+      for (var i = 0; i < arr.length / 2; i++) {
+        var temp = arr[i];
+        arr[i] = arr[arr.length - 1 - i];
+        arr[arr.length - 1 - i] = temp;
+      }
+      console.log(arr);
+    </script>
+  </body>
+</html>

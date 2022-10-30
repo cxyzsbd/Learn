@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ /* 
+        循环语句：
+                - 通过循环语句可以使指定的代码反复执行
+                - JS中一共有三种循环语句
+                    while语句
+                    do-while语句
+                    for语句
+                - while语句
+                    - 语法：
+                        while(条件表达式){
+                            语句...
+                        }
+
+                    - 执行流程：
+                        while语句在执行时，会先对条件表达式进行判断，
+                            如果结果为true，则执行循环体，执行完毕，继续判断
+                            如果为true，则再次执行循环体，执行完毕，继续判断，如此重复
+                            知道条件表达式结果为false时，循环结束
+      
+        循环关键字：break和continue
+                - break
+                    - break用来终止switch和循环语句
+                    - break执行后，当前的switch或循环会立刻停止
+                    - break会终止离他最近的循环
+                    
+                - continue
+                    - continue用来跳过当次循环
+
+
+
+         当一个循环的条件表达式恒为true时，这个循环就是一个死循环，会一直执行（慎用）
+         while(true){
+             alert('哈哈')
+         }
+
+         
+          通常编写一个循环，要有三个要件
+              1.初始化表达式（初始化变量）
+              2.条件表达式（设置循环运行的条件）
+              3.更新表单式（修改初始化变量）   
+              
+        一、    for循环
+                - for循环和while没有本质区别，都是用来反复执行代码
+                - 不同点就是语法结构，for循环更加清晰
+                - 语法：
+                    for(①初始化表达式; ②条件表达式; ④更新表达式){
+                        ③语句...
+                    }
+
+                - 执行流程：
+                    ① 执行初始化表达式，初始化变量
+                    ② 执行条件表达式，判断循环是否执行（true执行，false终止）
+                    ③ 判断结果为true，则执行循环体
+                    ④ 执行更新表达式，对初始化变量进行修改
+                    ⑤ 重复②，知道判断为false为止
+
+                - 初始化表达式，在循环的整个的生命周期中只会执行1次
+                - for循环中的三个表达式都可以省略
+                - 使用let在for循环的()中声明的变量是局部变量，只能在for循环内部访问
+                    使用var在for循环的()中声明的变量可以在for循环的外部访问
+                - 创建死循环的方式：
+                    while(1){}
+                    for(;;){}      
+
+
+        二、    do-while循环
+                - 语法：
+                    do{
+                        语句...
+                    }while(条件表达式)
+
+                - 执行顺序：
+                    do-while语句在执行时，会先执行do后的循环体，
+                        执行完毕后，会对while后的条件表达式进行判断
+                        如果为false，则循环终止
+                        如果为true，则继续执行循环体，以此类推
+
+                    和while的区别：
+                        while语句是先判断再执行
+                        do-while语句是先执行再判断
+
+                        实质的区别：
+                            do-while语句可以确保循环至少执行一次      
+        */
+    </script>
+</body>
+</html>

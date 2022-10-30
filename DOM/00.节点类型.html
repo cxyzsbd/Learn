@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+一、节点类型
+
+****文本节点****        ****元素节点****         ****注释节点****                    
+nodeName:#text         nodeName:大写标签名(LI)   nodeName:#comment
+nodeType:  3           nodeType:   1            nodeType:   8
+nodeValue:文本内容      nodeValue:null           nodeValue:注释内容
+
+
+二、节点(元素)操作
+
+增加:
+ul.append(添加内容) appendChild(添加内容)
+ul.insertBefore(添加内容,找位置)
+
+删除:
+删除的元素.remove()
+父元素.removeChild(删除的元素)
+
+修改:
+父元素.replaceChild(新增,被覆盖)
+
+创建：
+document.createElement()
+
+复制:
+cloneNode()
+参数:true,复制整个节点和里面的内容
+     flase,只复制节点不复制内容
+
+
+三、寻找节点
+
+*子节点 childNodes  *子元素节点 children
+                     高版本:只有元素节点
+                     低版本:元素节点,注释
+
+*第一个子节点firstChild  *第一个子元素节点firstElementChild
+
+*最后一个子节点lastChild *最后一个子元素节点lastElementChild(低版本：undefined)
+
+子元素节点低版本兼容:
+var arr = box.childNodes;
+var newArr = [];
+  for (var i = 0; i < arr.length; i++){
+    if (arr[i].nodeType == 1) {
+      //newArr.push(arr[i]);
+      newArr[newArr.length] = arr[i];
+    }
+}
+
+第一个子元素节点兼容
+
+判断：
+      1、firstElementChild  ==》undefined 低版本浏览器
+      2、低版本浏览器firstChild  （元素节点 注释节点）
+      如果节点的类型不是1，不是元素节点，往同级下找，直到找到元素节点
+
+ function fun() {
+  var box = document.getElementById("box1");
+  if (box.firstElementChild) {
+    return box.firstElementChild;
+  } else {
+    var first1 = box.firstChild;
+    while (first1 != null && first1.nodeType != 1) {
+      first1 = first1.nextSibling;
+    }
+    return first1;
+  }
+}
+
+
+*父节点 parentNode                         *父元素节点 parentElement
+*上一个兄弟节点 previousSibling             *下一个兄弟节点 nextSibling
+*上一个兄弟元素节点previousElementSibling   *下一个兄弟元素节点 nextElementSibling
+
+*/
+
+
+
+    </script>
+</body>
+</html>

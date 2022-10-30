@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //1.从开头增加元素
+      var arr = ["范冰冰", "蔡徐坤", "罗志祥", "邓伦", "袁冰研"];
+      arr[0] = "李冰冰"; //直接设置是覆盖，不是增加
+      console.log(arr);
+      //数组扩容 （数据的位置,索引,var i = arr.length）
+      //挪元素，所有元素往后挪，把一个位置空出来
+      var arr = ["范冰冰", "蔡徐坤", "罗志祥", "邓伦", "袁冰研"];
+      for (var i = arr.length; i >= 0; i--) {
+        // 5 4 3 2 1 0
+        arr[i] = arr[i - 1];
+        // arr[5] = arr[4];
+      }
+      arr[0] = "李冰冰";
+
+      //2.从末尾增加元素
+      var arr = ["范冰冰", "蔡徐坤", "罗志祥", "邓伦", "袁冰研"];
+      arr[arr.length] = "李冰冰";
+      console.log(arr);
+
+      //3.从中间增加元素
+      var arr = ["范冰冰", "蔡徐坤", "罗志祥", "邓伦", "袁冰研"];
+      for (var i = arr.length; i > 1; i--) {
+        arr[i] = arr[i - 1];
+      }
+      arr[1] = "李冰冰";
+      console.log(arr);
+
+      //4.从开头删除
+      //原理:所有内容往前挪,第一个数据 = 后一个数据
+      var arr = ["天上人间", "白马会所", "兰桂坊", "怡红院"];
+      for (var i = 0; i < arr.length; i++) {
+        // arr[0] = arr[1];
+        // arr[1] = arr[2];
+        arr[i] = arr[i + 1];
+      }
+      arr.length--; //是把最后一个数据删除
+
+      //5.从末尾删除
+      var arr = ["天上人间", "白马会所", "兰桂坊", "怡红院"];
+      arr.length--;
+
+      //6.从中间删除
+      //所有内容往前挪，后面的元素直接把前面的元素覆盖
+      var arr = ["天上人间", "白马会所", "兰桂坊", "怡红院"];
+      for (var i = 1; i < arr.length; i++) {
+        arr[i] = arr[i + 1];
+      }
+      arr.length--;
+      //7.将数组中所有元素和|拼接成一个新的字符串
+      var arr = ["周杰伦", "蔡依林", "侯佩岑", "田馥甄", "张三"];
+      var str = "";
+      for (var i = 0; i < arr.length - 1; i++) {
+        str += arr[i] + "|";
+      }
+      str = str + arr[arr.length - 1];
+      //先把前面的数据拼接，最后一个在for循环外部拼接
+
+
+
+    </script>
+  </body>
+</html>

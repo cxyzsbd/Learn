@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* Object.defineProperties方法(ES5)
+var obj = Object.defineProperties({},{
+    name:{
+        configurable:true,
+        enumrable:true,
+        get:function(){
+            console.log("获取值");
+            return "张三"
+        },
+        set:function(newValue){
+            console.log("新值是",newValue)
+        }
+    },
+    age:{
+        configurable:true,
+        enumrable:true,
+        get:function(){
+            console.log("获取值age");
+            return 20
+        },
+        set:function(newValue){
+            console.log("新值是age",newValue)
+        }
+    }
+
+})
+console.log(obj);
+
+
+创建或者修改一个对象
+Object.defineProperty:是vue2.0的响应式原理的核心函数。(ES5)
+(vue3.0通过 ES6里的 Proxy的内置构造函数实现响应式)
+
+1.创建一个对象
+var obj = Object.defineProperty({},"name",{
+configurable:true,
+enumerable:true,
+get:function(){
+    console.log("get执行了");
+    return "张三";
+},
+set:function(newvalue){
+    console.log("新值",newvalue);
+}
+})
+
+2.把一个普通对象修改成一个可控制(可观察的)对象*/
+      var obj = {
+        name: "张安",
+        age: 20,
+      };
+
+      function observer(obj) {
+        for (var key in obj) {
+          // (function (key) {
+          let value = obj[key];
+          Object.defineProperty(obj, key, {
+            configurable: true,
+            enumerable: true,
+            get: function () {
+              console.log("get");
+              return value;
+            },
+            set: function (newvalue) {
+              console.log("set");
+              // value = newvalue;
+            },
+          });
+          // })(key)
+        }
+      }
+      // console.log(obj);  // 普通对象
+      observer(obj); // 修改obj为一个可观察的对象；
+      console.log(obj); // 可观察的对象
+    </script>
+  </body>
+</html>

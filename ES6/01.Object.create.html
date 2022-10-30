@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>/* 
+
+Object.create 可以被配置的对象：
+一、创建原型对象:
+Object.create(对象); 在对象的原型上创建内容
+var obj = Object.create({name:"张三",age:20});
+
+二、直接创建一个对象:
+第二个参数配置对象的键名和键值:可控状态
+var obj = Object.create(null,{
+    name:{
+        value:"张三",
+        configurable:true,//可配置的
+        enumerable:true//可枚举的
+    },
+    age:{
+        value:20,
+        configurable:false,//不可配置
+        enumerable:false//不可枚举
+
+    }
+})
+
+1.configurable 默认为false,不可配置
+2.enumerable   默认为false,不可枚举(循环)
+
+三、通过存取器来创建对象*/
+obj = Object.create(null,{
+    name:{
+        configurable:true,
+        enumrable:true,
+        get:function(){
+            console.log("读取对象属性的时候执行get函数,返回值就是对象的键值")
+            return "张三";
+        },
+        set:function(newvalue){
+            console.log("只要设置了内容都会经过set函数",newvalue)
+        }
+    },
+    age:{
+        configurable:true,
+        enumerable:true,
+        get:function(){
+            console.log("get age");
+            return 20;
+        },
+        set:function(newvalue){
+            console.log("只要设置age属性都会经过我,set函数,设置的值是",newvalue)
+        },
+    },
+
+})
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" placeholder="请输入你喜欢的歌曲" />
+    <ul></ul>
+    <script>
+/* 执行操作
+            1判断的用户输入回车    event.keyCode ==13
+            2判断input有没有有效字符 input_val.trim() true有内容 false 提升
+            3、true有内容 需要创建li值 =input.value ，
+            4、li动态添加ul里面
+            5、需要情况 input            
+            
+*/
+            
+ var input1 = document.querySelector("input");
+  input1.onkeyup = function (event) {
+    input_val = input1.value;
+    // console.log(input_val);
+    if (event.keyCode == 13) {
+      if (input_val.trim()) {
+        var ul = document.querySelector("ul");
+        var li = document.createElement("li");
+        li.onmouseover = function () {
+          li.style.background = "red";
+        };
+        li.onmouseout = function () {
+          li.style.background = "";
+        };
+        li.innerHTML = input_val;
+        ul.append(li);
+        this.value = "";
+      } else {
+        alert("请输入正确内容");
+      }
+    }
+  };            
+            
+            
+            
+            
+            
+
+    </script>
+</body>
+</html>

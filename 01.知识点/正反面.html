@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .box {
+        width: 200px;
+        height: 300px;
+        border: 4px solid #000;
+        margin: 100px auto;
+        transform-style: preserve-3d;
+        transition: 1s;
+      }
+      p {
+        width: 200px;
+        height: 300px;
+        font-size: 40px;
+        text-align: center;
+        line-height: 300px;
+        position: absolute;
+        backface-visibility: hidden;
+      }
+      p:nth-child(1) {
+        background: pink;
+      }
+      p:nth-child(2) {
+        background: orange;
+        transform: rotateY(180deg);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <p>正面</p>
+      <p>反面</p>
+    </div>
+  </body>
+</html>
+
+<script>
+  /* 
+        事件源    大盒子
+        事件类型  移入  移出
+        函数执行  大盒子旋转 180deg   0deg
+    */
+  var box = document.querySelector("div");
+  box.onmouseover = function () {
+    box.style.transform = "rotateY(180deg)";
+  };
+  box.onmouseout = function () {
+    box.style.transform = "rotateY(0deg)";
+  };
+</script>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+      }
+      .box {
+        width: 250px;
+        height: 100px;
+        margin: 100px auto;
+        position: relative;
+      }
+      .content {
+        width: 250px;
+        height: 100px;
+        background: pink;
+        color: #fff;
+        font-size: 40px;
+        text-align: center;
+        line-height: 100px;
+        transition: 0.5s;
+      }
+      p {
+        width: 0px;
+        height: 12px;
+        background: #666;
+        position: absolute;
+        transition: 0.5s;
+      }
+      .top {
+        top: 0px;
+        left: 0px;
+      }
+      .bottom {
+        bottom: 0px;
+        right: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <p class="top"></p>
+      <div class="content">移入我看一下</div>
+      <p class="bottom"></p>
+    </div>
+  </body>
+</html>
+<!-- 
+    事件源： top和bottom，content
+    事件类型： 移出和移入
+    执行操作
+          top和bottom   width
+          content     背景和字体颜色
+ -->
+<script>
+  // name 名， top关键词
+  var top_bor = document.querySelector(".top");
+  var bottom_bor = document.querySelector(".bottom");
+  var content = document.querySelector(".content");
+  console.log(top_bor);
+  console.log(bottom_bor);
+
+  content.onmouseenter = function () {
+    this.style.background = "yellowgreen";
+    this.style.color = "red";
+    top_bor.style.width = "250px";
+    bottom_bor.style.width = "250px";
+  };
+  content.onmouseleave = function () {
+    this.style.background = "";
+    this.style.color = "";
+    top_bor.style.width = "0px";
+    bottom_bor.style.width = "0px";
+  };
+</script>

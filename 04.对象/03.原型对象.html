@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+对象中存储属性的区域实际有两个：
+1- 直接通过对象所添加的属性，位于对象自身中
+2- 对象中还有一些内容，会存储到原型对象.
+
+当我们访问对象中的属性时,会优先访问对象自身的属性.
+对象自身不包含该属性时,才会去原型对象中寻找.
+
+访问一个对象的原型对象
+                    对象.__proto__
+                    Object.getPrototypeOf(对象)
+原型对象中的数据：
+                1. 对象中的数据（属性、方法等）
+                2. constructor （对象的构造函数）
+
+显式原型（构造函数有）：构造函数的prototype的属性值
+隐式原型（实例化对象有）：实例化对象_proto_
+
+注意：
+     原型对象也有原型，这样就构成了一条原型链.
+原型链：
+        - 读取对象属性时，会优先对象自身属性，
+        如果对象中有，则使用，没有则去对象的原型中寻找
+        如果原型中有，则使用，没有则去原型的原型中寻找
+        直到找到Object.prototype顶级原型（Object的原型没有原型（为null））
+
+- 作用域链，是找变量的链，找不到会报错
+- 原型链，是找属性的链，找不到会返回undefined
+
+JS中继承就是通过原型来实现的,当继承时,子类的原型就是一个父类的实例
+  class Animal{
+  }
+  class Cat extends Animal{
+  }
+  class TomCat extends Cat{
+  }
+
+TomCat --> cat --> Animal实例 --> object --> Object原型 --> null
+cat --> Animal实例 --> object --> Object原型 --> null
+
+注意：
+    千万不要通过类的实例去修改原型
+        1. 通过一个对象影响所有同类对象，这么做不合适
+        2. 修改原型先得创建实例，麻烦
+        3. 危险 
+p.__proto__ = new Dog() // 直接为对象赋值了一个新的原型 不要这么做
+
+通过对象修改原型，向原型中添加方法，修改后所有同类实例都能访问该方法 不要这么做
+p.__proto__.run = () => {
+    console.log('我在跑~')
+}
+
+修改原型时，最好通过通过类(构造函数)去修改: 
+类.prototype.属性
+
+1. 一修改就是修改所有实例的原型
+2. 无需创建实例即可完成对类的修改
+
+
+
+
+*/
+
+
+    </script>
+</body>
+</html>

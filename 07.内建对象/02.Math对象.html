@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+ Math
+        - Math一个工具类
+        - Math中为我们提供了数学运算相关的一些常量和方法
+        - 常量：
+        Math.PI 圆周率
+        - 方法：
+        Math.abs() 求一个数的绝对值
+        Math.min() 求多个值中的最小值
+        Math.max() 求多个值中的最大值
+        Math.pow() 求x的y次幂
+        Math.sqrt() 求一个数的平方根
+
+        Math.floor() 向下取整
+        Math.ceil() 向上取整
+        Math.round() 四舍五入取整
+        Math.trunc() 直接去除小数位
+
+        Math.random() 生成一个0-1之间的随机数
+            
+实现Max方法*/
+      var getMath = {
+        PI: 3.1415926,
+        max: function () {
+          // arguments可以获取实参的数组
+          var max = arguments[0];
+          //   for循环变量实参，通过下标找到对应的实参
+          for (var i = 0; i < arguments.length; i++) {
+            //实参值比较，谁的重新赋值
+            if (arguments[i] > max) {
+              max = arguments[i];
+            }
+          }
+          return max;
+        },
+        min: function () {
+          var min = arguments[0];
+          for (var i = 0; i < arguments.length; i++) {
+            if (arguments[i] < min) {
+              min = arguments[i];
+            }
+          }
+          return min;
+        },
+      };
+
+      //   随机数  Math的API
+      // Math.random()  0-1的小数 ，包0不包1
+      //   0 <= 随机数 < 1
+
+      /*
+          规律 随机数
+          Math.random()* b - a + a;
+        */
+      //   0-1的小数
+      //   console.log(Math.random());
+
+      //   随机数0- 100 小数
+      //   console.log(Math.random() * 100);
+
+      //   随机数1- 100 小数
+      //   console.log(Math.random() * 99 + 1);
+
+      //   随机数5- 50 小数
+      //   console.log(Math.random() * 45 + 5);
+
+      //   随机数3- 60 小数
+      //   console.log(Math.random() * 57 + 3);
+
+      //   随机整数
+
+      //   随机整数规律 Math.floor(Math.random() * (b- a +1) + a)
+      // 随机数1- 10 整数
+      //   console.log(Math.floor(Math.random() * 10 + 1));
+
+      //   随机数5- 50整数
+      //   console.log(Math.floor(Math.random() * 46 + 5));
+
+      //   随机数3 - 60;
+      //   console.log(Math.floor(Math.random() * 58 + 3));
+
+      //   function getRandom(a, b) {
+      //     var index = Math.floor(Math.random() * (b - a + 1) + a);
+
+      //     return index;
+      //   }
+      //   console.log(getRandom(50, 100));
+
+      //   var arr = ["喜羊羊", "懒羊羊", "慢羊羊", "沸羊羊", "美羊羊", "烤全羊"];
+      //   console.log(arr[getRandom(0, arr.length - 1)]);
+
+      //   4位随机验证码
+      /*
+          原理：
+            1、for 循环  0-3  （出现4个随机数）
+            2、字符 62  0-61 随机数
+            3、把随机的4个字符拼接在外面输出
+
+        */
+      //   var str =
+      //     "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm1234567890";
+      //   var code = "";
+
+      //   for (var i = 0; i < 4; i++) {
+      //     var num = Math.floor(Math.random() * 62);
+      //     // console.log(str[num]);
+      //     code += str[num];
+      //   }
+      //   console.log(code);
+
+      //   1 - 10
+      // prompt()
+
+      function getRandom(a, b) {
+        return Math.floor(Math.random() * (b - a + 1) + a);
+      }
+      var index = getRandom(1, 10);
+
+      //   while (true) {
+      //     var num = prompt("请输入1-10的数字");
+      //     if (num > index) {
+      //       console.log("你猜大了");
+      //     } else if (num < index) {
+      //       console.log("你猜小了");
+      //     } else {
+      //       console.log("你猜对了");
+      //       break;
+      //     }
+      //   }
+
+      function getRandom(a, b) {
+        return Math.floor(Math.random() * (b - a + 1) + a);
+      }
+      var index = getRandom(1, 10);
+
+      for (var i = 1; i <= 5; i++) {
+        var num = prompt("请输入1-10的数字");
+        num = num.trim(); //去除字符空格
+        // 判断是不是有效数字
+        if (!isNaN(num) && num !== "") {
+          //判断随机数和输入的数据
+          if (num > index) {
+            alert("你猜大了" + i + "次");
+          } else if (num < index) {
+            alert("你猜小了" + i + "次");
+          } else {
+            alert("你猜对了" + i + "次");
+            break;
+          }
+        } else {
+          alert("不要瞎输" + i + "次");
+        }
+      }
+    </script>
+  </body>
+</html>

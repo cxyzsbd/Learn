@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+ var score = prompt("请输入您的成绩");
+ score = score.trim();
+ if (!isNaN(score) && score !== "") {
+   if (score >= 90) {
+     alert("您的成绩优秀");
+   } else if (score >= 80) {
+     alert("您的成绩良好");
+   } else if (score >= 70) {
+     alert("您的成绩一般");
+   } else if (score >= 60) {
+     alert("您的成绩及格！");
+   } else {
+     alert("加油！");
+   }
+ } else {
+   console.log("请输入有效数字");
+ }
+
+
+// "" === ""比较（值和类型都相等）true ，所以!== 就是 false
+//   console.log(score !== ""); //false
+//   console.log("" !== ""); //false
+//   console.log(!isNaN(score)); //true
+
+//   因为是字符串"null"
+// "null" 和 "", 类型相等，比较不等，所以结果是true
+//   console.log(score !== ""); //true
+//   console.log("null" !== ""); //true
+//   console.log(!isNaN(score)); //false
+//  因为'null'是字符串,所以转换不了数字
+//  因为是字符串"0"
+// "0" 和 "", 类型相等，比较不等，所以结果是true
+//   console.log(score !== ""); //true
+//   console.log("0" !== ""); //true
+//   console.log(!isNaN(score)); //true
+// 因为'0'可以转换数字0 ，所以是true
+
+
+
+    </script>
+</body>
+</html>

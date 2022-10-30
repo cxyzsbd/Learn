@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+    /* 
+流程控制语句可以用来改变程序执行的顺序
+1. 条件判断语句
+2. 条件分支语句
+3. 循环语句
+
+    if语句
+        - 语法：
+            if(条件表达式){
+                语句...
+            }
+            
+        - 执行流程
+            if语句在执行会先对if后的条件表达式进行求值判断，
+                如果结果为true，则执行if后的语句
+                如果为false则不执行
+
+            if语句只会控制紧随其后其后的那一行代码，如果希望可以控制多行代码，可以使用{}将语句扩起来
+            最佳实践：即使if后只有1行代码，我们也应该编写代码块，这样结构会更加的清晰.
+
+            如果if后的添加表达式不是布尔值，会转换为布尔值然后再运算
+
+    if-else语句
+            - 执行流程：
+                if-else执行时，先对条件表达式进行求值判断，
+                    如果结果为true 则执行if后的语句
+                    如果结果为false 则执行else后的语句
+
+            if-else if-else语句：
+            - 语法：
+                if(条件表达式){
+                    语句...
+                }else if(条件表达式){
+                    语句...
+                }else if(条件表达式){
+                    语句...
+                }else if(条件表达式){
+                    语句...
+                }else{
+                    语句...
+                }
+
+- 执行流程：
+                if-else if-else语句，会自上向下依次对if后的条件表达式进行求值判断，
+                    如果条件表达式结果为true，则执行当前if后的语句，执行完毕语句结束.
+                    如果条件表达式结果为false，则继续向下判断，直到找到true为止.
+                    如果所有的条件表达式都是false，则执行else后的语句
+
+                注意：
+                    if-else if-else语句中只会有一个代码块被执行，
+                    一旦有执行的代码块，下边的条件都不会在继续判断了
+                    所以一定要注意，条件的编写顺序
+
+*/
+
+    </script>
+
+</body>
+</html>

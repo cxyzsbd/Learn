@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+  </head>
+  <body>
+    <ul>
+      <li class="child1">拆家的小柯基！</li>
+      <li class="child2">拆家的小柯基！</li>
+      <li class="child3">拆家的小柯基！</li>
+      <li class="child4">拆家的小柯基！</li>
+      <li class="child5">拆家的小柯基！</li>
+      <li class="child6">拆家的小柯基！</li>
+      <li class="child7">拆家的小柯基！</li>
+    </ul>
+  </body>
+</html>
+<script>
+  //    排他思想：
+  //         1、先改变所有内容 for 循环变量
+  //         2、先在事件外部，给所有对象元素添加了一个index属性，值（0-6下标）
+  //         在事件里面，使用自己存的index属性，单独操作自己的样式
+
+  var li_list = document.querySelectorAll("li");
+  for (var i = 0; i < li_list.length; i++) {
+    // console.log(li_list[i]);
+    li_list[i].index = i;
+    li_list[i].onclick = function () {
+      //   点击事件里面如果那外面i ，是所有循环执行完毕后的i
+      for (var j = 0; j < li_list.length; j++) {
+        li_list[j].innerText = "不养了,太费钱了";
+      }
+      li_list[this.index].innerText = "我自己偷偷养！";
+      //如果需要把外面for循环的值再点击事件里面使用，添加属性的形式，把i存起来
+    };
+  }
+</script>
