@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
- /* 字符串：
+      /* 字符串：
         - 字符串其本质就是一个字符数组
         - "hello" --> ["h", "e", "l", "l", "o"]
         - 字符串的很多方法都和数组是非常类似的
@@ -42,9 +42,10 @@
                             - 检查一个字符串是否以指定内容开头
                         str.endsWith()
                             - 检查一个字符串是否以指定内容结尾
-                        str.padStart()
-                        str.padEnd()
-                            - 通过添加指定的内容，使字符串保持某个长度
+                        str.padStart() str.padStart(6, "-");
+                            - 补全开头的字符串,通过添加指定的内容,使字符串保持某个长度
+                        str.padEnd() str.padEnd(6,".");
+                            - 补全字符串后面的内容,通过添加指定的内容,使字符串保持某个长度   
                         str.replace()
                             - 使用一个新字符串替换一个指定内容
                         str.replaceAll()    
@@ -79,12 +80,29 @@
                             - unicode编码找到对应的字符
                                   参数：unicode编码
                                   返回值：对应的字符
-                         str.localeCompare("b")
+                        str.localeCompare("b")
                             - 比较大小
                                   参数 ： 字符串
                                   返回值：元字符大1 元字符小-1  相对0
 
-*/ 
+
+                        repeat() 循环字符串
+                        
+                        过滤敏感词 ；
+                        var str = "fdsafdsaXXfdafdsaXXXfdafdsaXXfdsafds";
+                        var reg = /X+/g; // 匹配敏感词；
+                        替换敏感词 ；
+                        var res  =  str.replace(reg,"*");
+                        console.log(res)
+                        var res = str.replace(reg,function(arg){
+                            console.log(arg);
+                            return "*".repeat(arg.length);
+                        })
+                        console.log(res);
+                        
+
+
+*/
     </script>
-</body>
+  </body>
 </html>

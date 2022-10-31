@@ -22,6 +22,7 @@ var newObj = new Proxy(obj,{
     set:function(target,key,newValue){
         console.log("设置了set");
         target[key] = newValue
+        //return true;严格模式下要补充
     }
 })
 
