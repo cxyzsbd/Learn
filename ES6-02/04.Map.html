@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+    </ul>
+    <script>
+/* 
+Map:一种数据结构,类似对象，补全了对象的缺点。
+对象的键名只能是字符串,Map的键名可以是任意类型.
+
+1. 创建一个Map
+方式一:
+var map = new Map([["name","张三"],["age",20],["height","178cm"]])
+//二维数组,数组里的第一项就是map的键名,第二个就是键值.
+
+方式二:
+var map = new Map();
+//设置map的键名和键值
+map.set("name","张三");
+map.set("age",20);
+
+2. 获取map里的键值: let 键值 = map.get(键名)
+var myname =  map.get("name")
+
+3. keys和values : 获取map数据的键名和键值
+map.keys()  map.values()
+
+4. 删除指定元素
+map.delete("键名") 删除指定元素
+map.clear() 删除map里的所有元素
+
+5. size map的长度 
+console.log(map.size)
+
+6. has 判断map里是否拥有某个键名
+map.has("name")
+
+
+
+
+//把元素作为map的键名
+let lis = document.querySelectorAll("li");
+let arr = []
+lis.forEach((li,key)=>{
+    let obj = {};
+    obj['ele'] = li;
+    //把元素放进obj的属性中
+    
+    if(key == 0){
+        obj['color'] == "red";
+    }else if(key == 1){
+        obj['color'] = "yellow";
+    }else{
+        obj['color'] = "blue";
+    }//把颜色放进obj的属性中
+
+    arr.push(obj)
+    //把obj加入到数组中
+})
+    arr.forEach(item=>{
+    //遍历obj,把obj.color属性循环赋值给obj.ele(li)的style中
+        console.log(item)
+        item.ele.style.color = item.color;
+    })
+*/
+
+//简化:
+let lis = document.querySelectorAll("li");
+let map = new Map();
+map.set(lis[0],"red");
+map.set(lis[1],"yellow");
+map.set(lis[2],"blue");
+console.log(map);
+
+map.forEach((item,key)=>{
+    key.style.color = item
+    //将键值赋给键名.style
+})
+
+    </script>
+</body>
+</html>

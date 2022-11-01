@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+一、对象简写
+
+    1.对象键名和键值的简写
+    对象里如果键名和键值一样可以省略:
+    ES5写法；                       
+    var obj = {
+    myname:myname,
+    age:age
+    }
+       
+    ES6的简写 
+    var obj = {
+        myname,
+        age,
+        myheight:height,
+    }   
+       
+    2.对于函数的简写      
+    ES6 对象里的函数:把 冒号和function 省略掉 
+    var myname = "张三";
+    let obj  = {
+    myname,
+    age:20,
+    fn1(){
+        console.log("fn1");
+    },
+    fn4:()=>{
+        console.log("fn4");
+    }
+    }
+    
+    3.动态的对象键名
+    ES5对于键名不能解析变量,
+    ES6可以给键名加上 [] 解析变量.
+
+二、对象方法的扩展
+    1. Object.is()  判断2个对象是否相同
+    console.log(NaN===NaN);
+    console.log( Object.is(NaN,NaN))
+
+    2. Object.assign() 合并2个或者多个对象
+    var res = Object.assign(obj1,obj2,obj3)
+    注意: 重复的键名覆盖,Object.assign是一个浅拷贝.
+
+    3. Object.seal() 把对象改成不可配置对象(删除对象属性)
+    Object.seal(obj);
+    obj.age = 30;//对象可以被更改,不能被delete
+
+    4. Object.hasOwn(obj,key) 判断某个属性是否是对象的自身属性
+    ES5:obj.hasOwnProperty(key)
+    ES6:Object.hasOwn(obj,key)(推荐)
+
+    5. Object.values() 获取对象的所有键值放在数组里
+    6. Object.keys()   获取对象的所有键名放在数组里 
+
+三、对象转字符串
+   function fn(obj){
+    let keys = Object.keys(obj);
+    let value = Object.values(obj);
+    var arr = keys.map(function(key,index){
+      return `${key}=${value[index]}`;
+
+    })
+    return arr.join("&")
+   }
+    
+  const fn = obj=>Object.keys(obj).map((key,index)=>`${key}=${Object.values(obj)[index]}`).join("&"); 
+  console.log(fn(obj))
+  */
+    </script>
+  </body>
+</html>

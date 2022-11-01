@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+可变参数(剩余参数):通过rest参数接收实参(注意:和展开运算区分开)
+1.处理不定参数:
+ function fn(...args){
+     console.log(args);
+     //类似argument,但可变参数是真正的数组,接收剩余所有参数.
+ }
+fn(1,2,3,4)
+var arr = [1,2,3];
+fn(...arr);//展开数组
+
+2.可以接收剩余的参数(注意:可变参数只能放在最后!)
+ function fn(a,b,...args){
+     console.log(args);
+ }
+ fn(1,2,3,4);
+
+
+3.在解构的时候通过可变参数接收剩余内容
+let arr = [1,2,3,4,5,6,7,8,9];
+let [a,b,...args] = arr;
+console.log(args);
+
+
+可变参数,在定义函数时可以将参数指定为可变参数
+    - 可变参数可以接收任意数量实参，并将他们统一存储到一个数组中返回
+    - 可变参数的作用和arguments基本是一致，但是也具有一些不同点：
+    1. 可变参数的名字可以自己指定
+    2. 可变参数就是一个数组,可以直接使用数组的方法
+    3. 可变参数可以配合其他参数一起使用
+
+*/
+
+
+
+    </script>
+</body>
+</html>

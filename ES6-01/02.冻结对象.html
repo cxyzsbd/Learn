@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+const obj = {
+    name:"张三",
+    age:20              
+}
+
+obj = {
+    name:"李四",
+    age:32
+}//不能赋值
+
+obj.name = "李四"
+//可以修改
+
+1.冻结对象
+Object.freeze 只能冻结对象的一层数据
+冻结对象,对象的内容变得不能更改(赋值),也不能修改修改属性
+
+
+2.递归实现深冻结:(类似深拷贝)*/
+let obj = {
+    name:"张三",
+    age:20,
+    hobby:{
+        one:"篮球"
+    }
+}
+
+function deepFreeze(obj){
+    Object.freeze(obj);
+    //先冻结一层
+    for(let key in obj){
+        if(Object.hasOwn(obj,key)){
+            if(typeof obj[key] == "object"){
+                deepFreeze(obj[key])
+            }
+        }
+    }
+}
+
+deepFreeze(obj)
+obj.hobby.one = "足球";
+console.log(obj);
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

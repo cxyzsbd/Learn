@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//一、统计类被实例化次数
+//let num = 0;全局记录
+class Person{
+    static num = 0;//静态记录
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+        Person.num++;//把静态成员++
+    }
+}
+
+//二、实现一个单例模式(单体模式,保证一个类只有一个实例)
+//1.通过静态属性记录,实例化对象
+class Person{
+    static instance;
+    constructor(name,age){
+        this.name = name;
+        this.age = age;
+        if(!Person.instance){
+            //初次实例化直接保存
+            Person.instance = this;
+            console.log("初始化")
+        }else{
+            //后来的实例化
+            return Person.instance
+        }
+    }
+}
+let zhangsan = new Person("张三",20);
+let lisi = new Person("李四",21);
+let wangwu = new Person("王五",21);
+
+
+//2.全局范围内只能有一个弹框：
+class Dailog{
+    static instance;
+    constructor(){
+        this.ele = document.creatElement("p");
+        this.ele.innerHTML = "我是一个弹框,全局只有一个";
+        document.body.appendChild(this.ele);
+        this.hideDailog()
+        if(!Dailog.instance){
+        //让弹框的实例只有一个,操作只能操作一个弹框
+            Dailog.instance = this;
+        }else{
+            return Dailog.instance;
+        }
+    }
+
+    showDailog(){
+        this.ele.style.display = "block";
+    }
+    hideDailog(){
+        this.ele.style.display = "none";
+    }
+}      
+
+    let dailog1 = new Dailog();
+    let dailog2 = new Dailog();
+    document.querySelector(".btn1").onclick = function(){
+        dailog1.showDailog();
+        dailog2.showDailog();
+    }
+    document.querySelector(".btn2").onclick = function(){
+        dailog1.hideDailog();
+        dailog2.hideDailog();
+    }
+    </script>
+</body>
+</html>

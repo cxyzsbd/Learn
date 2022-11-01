@@ -48,29 +48,6 @@ console.log(fun(1, 5));
 console.log(fun(11, 2, 5));
 console.log(fun(11, 2, 5, 3));
 
-二、
-可变参数，在定义函数时可以将参数指定为可变参数
-    - 可变参数可以接收任意数量实参，并将他们统一存储到一个数组中返回
-    - 可变参数的作用和arguments基本是一致，但是也具有一些不同点：
-    1. 可变参数的名字可以自己指定
-    2. 可变参数就是一个数组，可以直接使用数组的方法
-    3. 可变参数可以配合其他参数一起使用
-
- function fn2(...abc) {
-                console.log(abc)
-            }
-
-function sum2(...num) {
-return num.reduce((a, b) => a + b, 0)
-}
-
-//当可变参数和普通参数一起使用时，需要将可变参数写到最后
-function fn3(a, b, ...args) {
-                console.log(args)
-}
-
-fn3(123, 456, "hello", true, "1111")
-
 
 */
     </script>

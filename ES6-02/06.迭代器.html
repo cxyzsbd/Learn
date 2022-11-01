@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+一、可选链式操作符 : ?
+var obj = {
+    name:"张三",
+    hobby:{
+        one:"篮球"
+    }
+}
+console.log(obj?.hobby?.one)
+
+二、空合并运算符: ??
+function fn(a,b){
+    // var a = a || 10;
+    // var b = b || 20;
+    var a = a ?? 10;
+    var b = b ?? 20;
+    //解决ES5问题
+    console.log(a,b);
+}
+fn(1,"");
+
+三、迭代器 iterator 
+1.Symbol.iterator
+var arr = ["张三","李四","王五"];
+let iObj = arr[Symbol.iterator]();   
+
+//任何迭代器都会提供二个属性和一个方法 
+//属性是value done  方法是next()
+console.log(iObj.next());
+console.log(iObj.next());
+//value:数组索引,数组键值
+
+2.entries() 里面是键名和键值的集合
+var arr = ["张三","李四","王五"]
+var obj = arr.entries()
+console.log(obj.next());
+console.log(obj.next());
+//value:数组键值
+
+3.所有拥有迭代器的数据,都可以被 for-of 循环出来
+var arr = ["张三","李四","王五"]
+for(let val of arr){
+     console.log(val);
+ }
+//for of循环entries
+for(let [key,value] of arr.entries()){
+    console.log(key,value)
+}
+
+//for of循环Symbol.iterator
+for(let val of arr[Symbol.iterator]()){
+    console.log(val)
+}
+
+自定义迭代器实现:
+每次迭代value值是数组的键值,done如果是false可继续迭代
+如果为true,则迭代结束:*/
+      function myIterator(arr) {
+        let count = 0;
+        return {
+          next() {
+            return {
+              value: arr[count++],
+              done: count > arr.length ? true : false,
+            };
+          },
+        };
+      }
+
+      var arr = ["张三", "李四", "王五"];
+      var res = myIterator(arr);
+      console.log(res);
+      console.log(res);
+      console.log(res);
+    </script>
+  </body>
+</html>

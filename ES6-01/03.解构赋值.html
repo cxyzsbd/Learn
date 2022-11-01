@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+解构赋值：获取对象或者数组的属性值:
+
+一.数组的解构*****
+ES5:
+var arr = ["张三","李四","王五"];
+var a = arr[0];
+var b = arr[1];
+var c = arr[2]
+
+ES6:
+一层解构:
+let arr  = ["张三","李四","王五"];
+let [a,b,c] = arr;
+console.log(a,b,c)
+
+多层解构:(保持前后嵌套一致)
+let arr = ["张三",["李四","王五"]]
+let [a,[b,c]] = arr;
+
+二.参数的解构:
+function fn ([a,b,c]){
+    console.log(a,b,c)
+    
+}
+fn(["张三","李四","王五"])
+
+
+三.对象的解构*****
+一层解构:
+var obj = {
+    name:"张三",
+    age:20
+}
+var myname = obj.name
+var myage = obj.age
+
+
+let{name:myname,age:myage} = obj
+//name,age要和之前的对象键名一致,myname和myage可以自定义
+
+let{name:name,age:age} = obj;
+//如果键名和键值一样,可以省略.
+
+let {name,age} = obj
+//最多的解构方式
+
+多层解构:保持和之前对象的数据解构一致
+var obj = {
+    name:"张三",
+    age:20,
+    hobby:{
+        one:"篮球"
+    }
+}
+
+let{name,age,hobby:{one}} = obj
+
+对象的参数解构:
+function fn({name:myname,age:myage}){
+    console.log(myname,myage)
+}
+
+function fn({name,age}){
+    console.log(name,age)
+}
+fn({name:"张三",age:20})
+
+
+四、字符串解构*****
+let str = "abc";
+str[1] = "z";
+//不能给字符串赋值
+
+let [a,b,c] = str
+//字符串的解构也是通过数组来解构
+
+五、默认值
+1.解构赋值的默认值 
+var arr = ["张三","李四"];
+let [name1,name2,name3] = arr
+
+在解构的同时设置默认值,如果没有解构出来就按照默认值赋值
+let [name1="默认名字1",name2="默认名字2",name3="默认名字3"] = arr;
+let {name:myname,age:myage=20} = obj
+
+2.函数参数的默认值:
+ES5:
+function fn(a,b){
+    var a = a || 10;
+    var b = b || 20
+    console.log(a,b);
+}
+fn(1,0);//0为false
+
+ES6:默认参
+function fn(a=10,b=20){
+    console.log(a,b);
+}
+
+解构赋值的默认值:
+function fn([a=10,b=20]){
+    console.log(a,b)
+}
+fn([1,2])
+
+*/
+
+
+
+
+    </script>
+</body>
+</html>

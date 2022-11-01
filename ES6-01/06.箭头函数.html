@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+箭头函数注意事项：
+1.箭头函数里没有arguments(隐藏参数)
+
+2.箭头函数里没有this,它的this是上层作用域的this(this穿透一层)
+
+3.箭头函数不能用于构造函数
+
+箭头函数的使用:
+ES5 匿名函数
+var fn = function(){
+    console.log("fn");
+}
+
+ES6的箭头函数 
+let fn = ()=>{
+    console.log("fn");
+}
+
+1.箭头函数里参数如果是一个,那么小括号可以不写
+let fn = v =>{
+    console.log(v);
+}
+
+2.如果是多个参数,或者没有参数,那么小括号一定要写
+var fn = (a,b)=>{
+    console.log(a,b);
+}
+
+3.箭头函数的箭头隐式返还后面的内容
+如果有大括号不会自动return,如果没有大括号,箭头会自动return.
+var fn = ()=>{
+    return {
+        name:"张三",
+        age:20
+    }
+}
+4.遇到有歧义的位置加上小括号包裹就可以了
+var fn = ()=> ({
+   name:"张三",age:20
+});
+
+5.回调函数里使用箭头函数
+定时器:
+    setTimeout(()=>{
+      console.log("hello")
+    },2000)
+
+document.querySelector("button").onclick = () => {
+     console.log("点击了");
+ } 
+ 
+var res = users.filter(item=>item.gender === "男").filter(item=>item.age>20);
+console.log(res);
+ 
+
+*/
+
+    </script>
+</body>
+</html>

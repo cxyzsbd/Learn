@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+一、Symbol 基本数据类型:独一无二的值
+1. symbol的创建(一旦生成就是一个唯一的值)
+   let s1 = Symbol("key1")
+   //没有new运算符
+
+2. 模拟私有成员
+var person = {
+    name:"张三",
+    age:20,
+    [Symbol("weight")]:"90kg"  // 私有属性 
+}
+console.log(  person[Symbol("weight")]);
+//undefined
+
+3. 特别的需求:键值是什么无所谓,但是键值要不相同
+var cate = {
+    person:Symbol(),
+    animal:Symbol()
+}
+function getCate(type){
+    if(type==cate.person){
+        console.log("是人类")
+    }else{
+        console.log("是动物")
+    }
+}
+getCate(cate.person);
+
+
+二、bigInt 大整型:处理大整数的
+JS在2**53次方之后计算就不准确了
+
+1. bigInt创建 
+bigInt只能和bigInt类型做运算:
+方式一：
+var num = 2**54;
+var bnum = BigInt(num);
+console.log(bnum + BigInt(1) );
+console.log(bnum + BigInt(2) );
+
+方式二:
+直接在number后加上n
+var num = 2n**54n;
+//必须加上n,bigInt只能和bigInt做运算
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
