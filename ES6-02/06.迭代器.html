@@ -61,10 +61,10 @@ for(let [key,value] of arr.entries()){
 for(let val of arr[Symbol.iterator]()){
     console.log(val)
 }
-
-自定义迭代器实现:
+四、
+1.自定义迭代器实现:
 每次迭代value值是数组的键值,done如果是false可继续迭代
-如果为true,则迭代结束:*/
+如果为true,则迭代结束:
       function myIterator(arr) {
         let count = 0;
         return {
@@ -79,9 +79,49 @@ for(let val of arr[Symbol.iterator]()){
 
       var arr = ["张三", "李四", "王五"];
       var res = myIterator(arr);
-      console.log(res);
-      console.log(res);
-      console.log(res);
+      console.log(res.next());
+      console.log(res.next());
+      console.log(res.next());
+
+2.提供生成器:generator 生成迭代对象 
+function *gen(){ //生成器函数,生成迭代器
+    yield "张三";
+    yield "李四";
+    yield "王五"
+}
+
+var Iobj = gen();
+// console.log(Iobj.next())
+
+for(let val of Iobj){
+  console.log(val)
+}
+
+*异步执行迭代器 
+ 这个写法会被后面ES8里面的async和await取代:*/
+function *gen(){
+  yield "张三";
+  yield "李四";
+  yield "王五";
+}
+let Iobj = gen();
+function run(){
+  let res = Iobj.next();
+  console.log(res);
+  if(res.done){
+    console.log("执行完毕")
+  }else{
+    setTimeout(run,1000)
+    
+    // setTimeout(function(){
+    //   run();
+    // },1000)
+  }
+}
+
+run()
+
+
     </script>
   </body>
 </html>

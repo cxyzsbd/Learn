@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+/* 
+ES5的继承:
+        1.构造函数的继承 父类.call(this)
+        2.原型的继承 prototype.fn = function(){}
+        2.1 组合继承
+                    function Link(){
+                        Link.prototype = Dad.prototype;
+                        Son.prototype = new Link();
+                        Son.prototype.constructor = Son;
+                    }
+
+ES6的继承: extends扩展
+class Dad{
+  constructor(name,age){
+    this.name = name;
+    this.age = age;
+    }
+
+  fn(){
+  console.log("父类的fn方法");
+  }
+}
+
+class Son extends Dad{
+ 
+}
+
+super()函数:
+如果子类需要扩展自己的属性,需要有自己的constructor,写法有区别。
+子类一旦有自己的constructor之后,就必须调用预定义函数super()
+class Son extends Dad{
+    constructor(name,age){
+        super(name,age);
+    }
+}
+
+super注意点:
+1.super只能在子类调用可以在constructor里或者是函数里调用super
+2.super不能单独使用
+3.super必须在this之前,也是constructor下第一个位置
+4.如果子类没有constructor那么子类会自动调用constructor和super方法并传参
+
+
+子类会继承父类的属性和方法,还会继承父类的静态成员.
+   class Dad{
+    static money = "$100000";
+    constructor(name,age){
+            this.name = name;
+            this.age = age;
+                    }
+        fn(){
+                console.log("父类的fn方法");
+            
+        }
+        class Son extends Dad{
+            constructor(name,age){
+              super(name,age);
+              this.height = "178cm";
+            }
+            fn(){
+                // console.log(super);
+                // 不能单独使用
+                super.fn();  // 调用了父类的fn方法；
+                console.log("子类的fn方法");
+            }
+        }
+*/
+
+
+
+    </script>
+</body>
+</html>

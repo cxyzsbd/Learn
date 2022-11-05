@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>/*
+ES5里的类似类的概念:构造函数
+ES6:class是一个函数,class是构造函数的语法糖.
+ class Person{
+        constructor(name,age){
+            this.name = name;
+            this.age = age;
+            fn2:function(){
+                console.log("fn2")
+                //错误的写法
+            }
+            
+            fn(){
+                 console.log("fn");
+                 //必须以简写形式
+            }
+    } 
+一、类的属性
+class Person{
+            height = "178cm"; //方式二:类里定义属性 ，不能接收参数
+            constructor(name,age){
+                this.name = name;  //方式一:在构造函数里写属性,可以接收参数
+                this.age = age;
+            }
+
+            //方式三:通过 get 和 set 设置属性
+            get myname(){
+                console.log("获取myname属性的时候执行getname函数");
+                return "我的名字";
+            }
+            set myname(newvalue){
+                console.log("新值是",newvalue)
+            }
+        }
+
+二、类的成员     
+1.ES6类的私有成员
+类的内部可以使用(只能类来使用),外部不能调用
+
+ES5模拟私有:
+function Person(name,age){
+    var _weight = "90kg";  // 私有属性
+    this.name = name;
+    this.age = age;
+}
+
+ES6类里的私有成员:通过 # 修饰符修饰  
+私有成员:私有属性,私有方法    
+     
+class Person{
+ age = 20;//等同于constructor里this.age = 20
+ #weight = "100kg";//只能在类的内部使用
+ constructor(name){
+    this.name = name
+ }
+ //公有方法调用私有属性
+ getWeight(){
+    return this.#weight;
+ }
+ //私有方法
+ #privateFn(){
+    console.log("私有方法")
+ }
+ //公有方法调用私有方法
+ getFn(){
+    this.#privateFn()
+ }
+
+}     
+let zhangsan = new Person("张三")  
+zhangsan.getFn()     
+     
+2.ES6类的静态成员    
+静态成员:静态属性与静态方法,和类有关和实例化对象无关的成员
+调用不需要实例化.
+
+ES5里的静态成员:
+Person.name = "人类工厂";  // 静态属性
+Person.fn = function(){  // 静态方法
+    console.log("fn")
+}
+Person.fn()
+
+ES6静态成员:通过 static 修饰符修饰属性,方法*/
+ class Person{
+    static name = "我是人类工厂";  // 静态属性
+    static age = "50年";
+    constructor(name,age){
+        this.name = name;  // 实例化对象的属性；
+        this.age = age;
+    }
+    static fn(){  // 静态方法 
+        console.log("fn");
+    }
+    // fn(){ // 属于实例化对象的 ，需要实例化调用
+    //     console.log("对象fn")
+    // }
+}
+//调用静态属性和方法  
+console.log(Person.name); // 调用静态属性 
+Person.fn();  // 调用静态方法
+
+
+    </script>
+</body>
+</html>

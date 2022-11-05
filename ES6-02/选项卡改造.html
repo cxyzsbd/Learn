@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container1">
+      <button>按钮一</button>
+      <button>按钮二</button>
+      <button>按钮三</button>
+      <div>111</div>
+      <div>222</div>
+      <div>333</div>
+    </div>
+
+    <div class="container2">
+      <button>按钮一</button>
+      <button>按钮二</button>
+      <button>按钮三</button>
+      <div>111</div>
+      <div>222</div>
+      <div>333</div>
+    </div>
+
+    <div class="container3">
+      <button>按钮一</button>
+      <button>按钮二</button>
+      <button>按钮三</button>
+      <div>111</div>
+      <div>222</div>
+      <div>333</div>
+    </div>
+    <button class="btn">点击我切换</button>
+  </body>
+  <script>
+    function Tab(btns, divs) {
+      this.btns = btns;
+      this.divs = divs;
+      this.btnsFn();
+    }
+
+    Tab.prototype.btnsFn = function () {
+      this.btns.forEach((btn, key) => {
+        btn.onclick = () => {
+          this.divsFn(key);
+        };
+      });
+    };
+
+    Tab.prototype.divsFn = function (key) {
+      this.divs.forEach((div, index) => {
+        if (key == index) {
+          this.divs[index].style.display = "block";
+        } else {
+          this.divs[index].style.display = "none";
+        }
+      });
+    };
+    var btns = document.querySelectorAll(".container1 button");
+    var divs = document.querySelectorAll(".container1 div");
+    var tb1 = new Tab(btns, divs);
+
+    var btns2 = document.querySelectorAll(".container2 button");
+    var divs2 = document.querySelectorAll(".container2 div");
+    var tb2 = new Tab(btns2, divs2);
+    var num = 0;
+    setInterval(() => {
+      tb2.divsFn(num);
+      num++;
+      if (num > 2) {
+        num = 0;
+      }
+    }, 1000);
+
+    var btns3 = document.querySelectorAll(".container3 button");
+    var divs3 = document.querySelectorAll(".container3 div");
+    var tb3 = new Tab(btns3, divs3);
+    var num2 = 0;
+    document.querySelector(".btn").onclick = function () {
+      tb3.divsFn(num2);
+      num2++;
+      if (num2 > 2) {
+        num2 = 0;
+      }
+    };
+  </script>
+</html>
