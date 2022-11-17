@@ -8,6 +8,50 @@
 </head>
 <body>
     <script>
+        // ES6里的静态成员 
+        // 静态成员 （成员属性 、静态方法） ： 和类有关 和实例化对象无关的成员，调用不需要实例化 ； 
+        // ES5里的静态成员 
+        // 构造函数 类；
+        // function Person(name,age){
+        //     this.name = name;
+        //     this.age = age;
+        // }
+
+        // 定义静态属性 
+        // Person.name = "人类工厂";  // 静态属性
+        // Person.age = "50年";
+        // Person.fn = function(){  // 静态方法
+        //     console.log("fn")
+        // }
+        // Person.fn();
+        // let zhangsan = new Person("张三",20);
+        // let lisi  = new Person("李四",21);
+
+
+        // ES6 静态成员 ：  static 修饰属性 或者 方法 
+        class Person{
+            static name = "我是人类工厂";  // 静态属性
+            static age = "50年";
+            constructor(name,age){
+                this.name = name;  // 实例化对象的属性；
+                this.age = age;
+            }
+            static fn(){  // 静态方法 
+                console.log("fn");
+            }
+            fn(){ // 属于实例化对象的 ，需要实例化调用
+                console.log("对象fn")
+            }
+        }
+
+        // 调用静态属性和方法
+
+      console.log( Person.name);  // 调用静态属性 
+      Person.fn();  // 调用静态方法
+
+      let zhangsan = new Person("张三",20);
+      console.log(zhangsan.name);
+      zhangsan.fn(); // 对象fn
 
 
 

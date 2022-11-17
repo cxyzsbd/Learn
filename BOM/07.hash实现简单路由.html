@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>按钮一</button>
+    <button>按钮二</button>
+    <button>按钮三</button>
+    <div class="show">
+        显示对应的页面
+    </div>
+    <script>
+        var btns = document.querySelectorAll("button");
+        renderPage();
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].onclick = function () {
+                // 把 i 值 设置成地址栏的hash值
+                window.location.hash = i;
+                renderPage()
+            }
+        }
+
+        function renderPage() {
+            var hashStr = window.location.hash;
+            console.log(hashStr);
+            switch (hashStr) {
+                case "#0":
+                    document.querySelector(".show").innerHTML = "<h1>页面一</h1>";
+                    break;
+                case "#1":
+                    document.querySelector(".show").innerHTML = "<h1>页面二</h1>";
+                    break;
+                case "#2":
+                    document.querySelector(".show").innerHTML = "<h1>页面三</h1>";
+                    break;
+            }
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

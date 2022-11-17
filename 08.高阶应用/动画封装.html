@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <script>
+
+        // 不停的改变box元素的 left 值 
+        var boxEle = document.querySelector(".box");
+
+        boxEle.onclick = function () {
+            var that = this;
+            move(this,500,"left",function(){
+                console.log("运动结束",this)
+                move(that,0,"left",function(){
+                    console.log("第二次运动结束");
+                });
+            });
+        }
+
+
+
+        // 动画封装成动画函数
+
+        function move(ele, target, dir,cb) {
+            var timer = setInterval(function () {
+                // 先获取当前的left值,然后再当前的left值基础上加一个值,设置成当前元素的left值 ；
+                var num = parseInt(getComputedStyle(ele, null)[dir]);
+                console.log(num);
+                if (num == target) {
+                    // 停止动画 
+                   cb && cb();
+                    clearInterval(timer);
+                }
+               
+                num += 10*(target>num?1:-1);
+                // console.log(num);
+                ele.style[dir] = num + "px";
+            }, 10)
+        }
+
+
+    </script>
+</body>
+
+</html>

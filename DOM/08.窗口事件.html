@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 2000px;
+        background: red;
+      }
+    </style>
+  </head>
+  <body>
+    <button>设置窗口的卷去高度</button>
+    <div class="box"></div>
+    <script>
+      /* 
+一、窗口事件：
+window.onload
+window.onresize
+
+        1.窗口滚动的时候触发 onscroll
+        2.获取卷去的高度
+        document.documentElement.scrollTop 有文档声明的时候使用
+        document.body.scrollTop 没有文档声明的时候使用
+        
+        window.onscroll = function(){
+            console.log("滚了");
+            var top = document.documentElement.scrollTop || document.body.scrollTop;
+            console.log(top);
+        }
+        3.设置卷去的高度
+        document.documentElement.scrollTop = 200; 注意:没有单位
+         
+         var btn = document.querySelector("button");
+         btn.onclick = function () {
+           document.documentElement.scrollTop = 200;
+         }; 
+
+
+
+1.获取窗口的大小： 窗口的宽 、高 。
+注意： 获取的宽和高是窗口的,包含滚动条的宽度
+   console.log(window.innerWidth )
+   console.log(window.innerHeight);
+2.获取不含滚动的宽和高
+   console.log("不包含滚动条大小", document.documentElement.clientWidth);
+
+二、利用窗口大小做适配
+适配: rem:相对于根字体的大小,html字体大小16px; 默认1rem = 16px
+
+通过js动态的设置根字体大小,假定在任何宽度下,总的宽度都是10rem
+
+console.log(window.innerWidth)总宽度
+document.documentElement.style.fontSize = window.innerWidth / 10 + "px";
+
+window.onresize = function () {
+            console.log("窗口改变的时候触发")
+            document.documentElement.style.fontSize = window.innerWidth / 10 + "px";
+}
+
+      
+*/
+    </script>
+  </body>
+</html>

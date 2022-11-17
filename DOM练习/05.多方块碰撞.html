@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            width: 590px;
+            height: 590px;
+            border:5px solid;
+            position: relative;
+            margin:0 auto;
+        }
+        .container div{
+            width: 180px;
+            height: 180px;
+            position: absolute;
+            background: gray;
+            color: white;
+            font-size: 30px;
+            text-align: center;
+            line-height: 180px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="left: 10px; top:10px;">1</div>
+        <div style="left: 34%; top:10px;">2</div>
+        <div style="left: 66.66%; top:10px;">3</div>
+        <div style="left: 10px; top:33.33%;">4</div>
+        <div style="left: 34%; top:33.33%;">5</div>
+        <div style="left: 66.66%; top:33.33%;">6</div>
+        <div style="left: 10px; top:66.66%;">7</div>
+        <div style="left: 34%; top:66.66%;">8</div>
+        <div style="left: 66.66%; top:66.66%;">9</div>
+    </div>
+    <script>
+        // 检测 拖拽的元素 和 其他的元素 是否碰撞了？？
+        // 把和拖拽元素碰撞的 元素收集起来，计算碰撞的面积
+        var colorArr = ["black","red","blue","orange","pink","yellow","skyblue","green","yellowgreen"];
+        var divs =  document.querySelectorAll(".container div");
+        for(var i=0;i<divs.length;i++){
+        //    console.log(  divs[i]);
+            divs[i].style.backgroundColor = colorArr[i];
+        }
+
+
+        // 给每一个方块都绑定拖拽的事件。
+
+        for(var i=0;i<divs.length;i++){
+            divs[i].onmousedown = function(e){
+                var x = e.clientX - this.offsetLeft;
+                var y = e.clientY - this.offsetTop;
+                // 当按下拖动的时候 那么 把这个被拖动的元素 放在最上层；
+                this.style.zIndex = 10;
+                // console.log(x,y);
+                this.onmousemove = function(e){
+                    var xx = e.clientX;
+                    var yy = e.clientY;
+                    var crashArr = [];
+                    // x  = e.clientX - this.offsetLeft
+                    // xx -(e.clientX - this.offsetLeft)
+                    // 需要和其他的元素 检测碰撞
+                    // this就是拖拽的元素 ，this 和其他的8个方块是否碰撞了。
+                    // console.log(this);
+                    // 循环9个方块 去掉this。 分别检测 和this是否碰撞了
+                    for(var j=0;j<divs.length;j++){
+                        // console.log(divs[j]);
+                        if(divs[j]!==this){  // 循环的元素 除了 当前拖拽元素之外的其他元素
+                            // 除了拖拽之外的剩余的8个元素 。
+                            // 检测this 和 其他8个元素之间是否碰撞了？
+                            if(isCrash(this,divs[j])){
+                                console.log("和其他8个元素碰了");
+                                crashArr.push(divs[j]); // 收集碰撞的元素
+                            }
+                        }
+                    }
+                    console.log(crashArr);
+
+
+                    this.style.left = xx - x + "px";
+                    this.style.top = yy - y + "px";
+                }
+            }
+            divs[i].onmouseup = function(){
+                // 拖动结束了 
+                this.style.zIndex = 0;
+                this.onmousemove = null;
+            }
+        }
+
+
+// input/output
+
+        // 封装一个检测是否碰撞的函数
+        function isCrash(box1Ele,box2Ele){
+             // A 的x轴上大边和小边 
+                var AminX = box1Ele.offsetLeft;
+                var AmaxX = box1Ele.offsetLeft + box1Ele.offsetWidth;
+                // B的x轴的大边和小边
+                var BminX = box2Ele.offsetLeft;
+                var BmaxX = box2Ele.offsetLeft + box2Ele.offsetWidth;
+                // A的y轴的大边和小边 
+                var AminY = box1Ele.offsetTop;
+                var AmaxY = box1Ele.offsetTop + box1Ele.offsetHeight;
+                // B的y轴上的大边和小边
+                var BminY = box2Ele.offsetTop;
+                var BmaxY = box2Ele.offsetTop + box2Ele.offsetHeight;
+                // 如果A 和 B 碰了 那么就满足 
+                if (AmaxX > BminX && AminX < BmaxX && AmaxY > BminY && AminY < BmaxY) {
+                    // console.log("x轴上碰撞了!!");
+                    return true;  // 碰了
+                }else{
+                    // 没有碰撞
+                    return false;
+                }
+        }
+
+
+
+
+    </script>
+</body>
+</html>

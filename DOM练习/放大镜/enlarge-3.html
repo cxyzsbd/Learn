@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .box {
+      width: 450px;
+
+      margin: 50px;
+      display: flex;
+      flex-direction: column;
+
+      position: relative;
+    }
+
+    .box>.show {
+      width: 450px;
+      height: 450px;
+      border: 1px solid #333;
+      position: relative;
+    }
+
+    .box>.show>.mask {
+      width: 200px;
+      height: 200px;
+      background-color: yellow;
+      opacity: .4;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+
+      display: none;
+    }
+
+    .box>.list {
+      width: 100%;
+      flex: 1;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      box-sizing: border-box;
+      padding: 20px;
+    }
+
+    .box>.list>p {
+      width: 54px;
+      height: 54px;
+      border: 1px solid #333;
+      margin-right: 10px;
+    }
+
+    .box>.list>p.active {
+      border-color: red;
+    }
+
+    .box>.enlarge {
+      width: 400px;
+      height: 400px;
+
+      position: absolute;
+      top: 0;
+      left: 101%;
+
+      background: url(./imgs/1.big.jpg) no-repeat;
+      background-size: 800px 800px;
+      background-position: 0 0;
+
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="box">
+    <div class="show">
+      <img src="./imgs/1.jpg" alt="">
+      <div class="mask"></div>
+    </div>
+    <div class="list">
+      <p class="active">
+        <img src="./imgs/1.small.jpg" showImg="./imgs/1.jpg" enlargeImg="./imgs/1.big.jpg" alt="">
+      </p>
+      <p>
+        <img src="./imgs/2.small.jpg" showImg="./imgs/2.jpg" enlargeImg="./imgs/2.big.jpg" alt="">
+      </p>
+    </div>
+    <div class="enlarge"></div>
+  </div>
+  <script>
+    /* 
+    分析需求：1、鼠标移入 遮罩层和 放大图都需要显示，鼠标移除的时候 遮罩层和放大图隐藏
+             2、鼠标在移动的时候遮罩层要跟着鼠标动 （鼠标的中间动）（边界问题）
+             3、放大图也要按照左边比例来移动
+             4、鼠标移到小图上可以切换图片
+     */
+    // 遮罩层 给边界 ；
+    var showEle = document.querySelector(".show");
+    var maskEle = document.querySelector(".mask");
+    var enlargeEle = document.querySelector(".enlarge");
+    var boxEle = document.querySelector(".box");
+
+    // showEle.onmouseover = function(){
+    //   console.log("子元素触发");
+    // }
+    // 鼠标移入显示 
+    showEle.onmouseenter = function () {
+      // console.log('enter');
+      // 鼠标移入到显示区域的时候 ，1.显示遮罩层  2.显示放大区域
+      maskEle.style.display = "block";
+      enlargeEle.style.display = "block";
+    }
+
+    // 鼠标移除 隐藏
+    showEle.onmouseleave = function () {
+      // console.log('enter');
+      // 鼠标移入到显示区域的时候 ，1.显示遮罩层  2.显示放大区域
+      maskEle.style.display = "none";
+      enlargeEle.style.display = "none";
+    }
+
+
+
+    // 鼠标移动的时候 遮罩层跟随鼠标移动 
+    showEle.onmousemove = function (e) {
+      // console.log(boxEle.offsetLeft);
+      // 1.获取鼠标相对于父级的坐标
+      var x = e.clientX - boxEle.offsetLeft;
+      var y = e.clientY - boxEle.offsetTop;
+      // console.log(x,y);
+      // console.log(x); 
+      // 2.设置遮罩层 到鼠标的位置
+      var disX = x - maskEle.offsetWidth / 2;
+      var disY = y - maskEle.offsetHeight / 2;
+      // console.log(disX,disY)
+      // 左边 不能超出边界
+      if (disX <= 0) {
+        disX = 0;
+      }
+      // 右边的边界
+      if (disX >= (showEle.clientWidth - maskEle.offsetWidth)) {
+        disX = (showEle.clientWidth - maskEle.offsetWidth)
+      }
+
+
+      // 上边距
+      if (disY <= 0) {
+        disY = 0;
+      }
+
+      // 下边距
+      if (disY >= (showEle.clientHeight - maskEle.offsetHeight)) {
+        disY = (showEle.clientHeight - maskEle.offsetHeight)
+      }
+      // 获取 红色和蓝色的宽度 
+
+      var a = maskEle.offsetLeft;
+      var b = showEle.clientWidth;
+      // 获取背景图的宽和高 
+      // console.log(a,b);
+      var wh = getComputedStyle(enlargeEle, null)['background-size'];
+      //  console.log(wh);
+      var arr = wh.split(" ");
+      var w = parseInt(arr[0]);
+      var h = parseInt(arr[1]);
+      // console.log(w,h);
+
+      var xx = (a / b) * w;  // 获取放大区域 相对于背景图的位置 
+      var yy = (maskEle.offsetTop / showEle.clientHeight) * h;
+      // 相对位置 设置到背景的定位上
+      enlargeEle.style.backgroundPosition = "-" + xx + "px -" + yy + "px";
+
+
+      maskEle.style.left = disX + "px";
+      maskEle.style.top = disY + "px";
+    }
+
+  </script>
+
+</body>
+
+</html>

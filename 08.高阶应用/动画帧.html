@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        // 动画帧 ： requestAnimationFrame , 后来js更新的 。支持后台不执行。
+
+        // 定时器 修改 title ；
+        // document.title = 0;
+        // setInterval(function(){
+        //     document.title ++
+        // }, 1000);
+
+
+        // 动画帧 ，写法 类似 settimeout ，需要使用递归
+        document.title = 0;
+        var num = 0;
+        function fn(){
+            num++;
+            if(num%50==0){
+                document.title++;
+            }
+            requestAnimationFrame(fn);  // 通过动画帧 调用 fn函数
+        }
+        fn();
+
+
+
+
+    </script>
+</body>
+</html>

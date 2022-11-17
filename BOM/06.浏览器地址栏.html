@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button>点击我打开页面</button>
+    <button class="btn2">点击我关闭窗口</button>
+    <button class="btn3">获取或者设置地址栏信息</button>
+    <button class="btn4">刷新浏览器</button>
+    <script>
+    /*
+      浏览器地址栏操作
+      1.打开一个地址 ：window.open
+      window.open("地址","_blank")
+      _self : 打开自己的页面
+      _blank: 新开一个页面打开地址
+
+      var btn = document.querySelector("button");
+      btn.onclick = function(){
+          window.open("http://www.baidu.com","_blank");
+      }
+
+      2.关闭一个窗口window.close();
+      注意 ： 可以关闭直接打开 或者是通过 window打开的页面
+      document.querySelector(".btn2").onclick = function(){
+          window.close();
+      }
+
+      3.获取或者设置当前的地址信息
+      document.querySelector(".btn3").onclick = function(){
+          // console.log( window.location.href);  // 获取地址栏信息
+          window.location.href = "http://www.baidu.com";  // 设置地址栏信息
+      }
+
+      4. 重载浏览器,刷新浏览器
+      window.location.reload();  // 错误写法
+      document.querySelector(".btn4").onclick = function(){
+          window.location.reload(); // 重新加载当前页面
+      }
+
+      5.获取querystring（请求参） 参数
+      querystring参数的规范:?键名=键值&键名2=键值2&键名3=键值3
+      键值不需要加引号
+      console.log(window.location.search); // 获取请求参,地址栏?后面的内容
+
+    6.获取地址栏后的hash（哈希）字符 , #后之后的内容
+      console.log(window.location.hash);
+
+     */
+    </script>
+  </body>
+</html>

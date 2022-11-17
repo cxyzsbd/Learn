@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css" />
+</head>
+
+<body>
+  <section id="wrap">
+    <h2 class="title">百度音乐榜单</h2>
+    <ul id="list">
+      <li>
+        <input type="checkbox" />
+        <span>第一条信息</span>
+        <a href="javascript:;" class="collect">收藏</a>
+        <a href="javascript:;" class="cancelCollect">取消收藏</a>
+        <a href="javascript:;" class="remove">删除</a>
+      </li>
+    </ul>
+    <footer class="footer">
+      <label><input type="checkbox" id="checkAll" />全选/全不选</label>
+    </footer>
+  </section>
+  <script>
+    // 收藏、取消收藏 ： 更改数据，渲染视图 
+    var data = [
+      {
+        id: 0,
+        title: "残酷月光 - 费启鸣",
+        checked: false,
+        collect: true
+      }, {
+        id: 1,
+        title: "兄弟 - 艾热",
+        checked: false,
+        collect: true
+      }, {
+        id: 2,
+        title: "毕生 - 夏增祥",
+        checked: true,
+        collect: true
+      }, {
+        id: 3,
+        title: "公子向北去 - 李春花",
+        checked: false,
+        collect: false
+      }, {
+        id: 4,
+        title: "战场 - 沙漠五子",
+        checked: false,
+        collect: false //是否收藏 true 收藏 false 没有收藏
+      }
+    ];
+
+    // 获取元素
+    var listEle = document.querySelector("#list");
+
+    renderDom(data);
+    // 一、根据数据渲染视图
+    function renderDom(data) {
+      // 清空原本ul里的内容
+      listEle.innerHTML = "";
+      // 根据 data数据生成li元素
+      for (let i = 0; i < data.length; i++) {
+        // data.i ---> data['i']
+        // console.log(data[i])
+        var liEle = document.createElement("li");
+        // 通过每条数据里的checked属性 来生成 checkbox ，如果是true那么就生成勾选的checkbox 否是就是不勾选的checkbox
+        var checkStr =  data[i].checked?'<input type="checkbox" checked  />':'<input type="checkbox"  />';
+
+        // 根据数据生成 收藏 或者是取消收藏
+        // true 收藏了 ，那么需要给我一个取消收藏的按钮
+        var collectStr = data[i].collect?'<a href="javascript:;" class="cancelCollect">取消收藏</a>':'<a href="javascript:;" class="collect">收藏</a>';
+        // 把li元素里填充内容
+        liEle.innerHTML = checkStr+'<span>'+data[i].title+'</span> '+collectStr+' <a href="javascript:;" class="remove">删除</a>';
+        
+        //获取收藏、取消收藏按钮
+
+        // 收藏按钮
+        // console.log(liEle.querySelector(".collect"))
+        // liEle.querySelector(".collect").onclick = function(){
+        //   console.log("点击了收藏按钮");
+        // }
+          // 直接把事件委托给 li元素
+          liEle.onclick = function(e){
+              // console.log("点击了li");
+              var target = e.target;
+              if(target.classList.contains('collect')){
+                console.log("点击了收藏按钮")
+                // 把当前点击对应的数据里的收藏 变成 true；
+                  // console.log(i);
+                  data[i].collect = true;
+                  console.log(data);
+                  renderDom(data);
+              }
+              if(target.classList.contains('cancelCollect')){
+                console.log("点击了取消收藏按钮");
+                  data[i].collect = false;
+                  console.log(data);
+                  renderDom(data);
+              }
+
+              if(target.classList.contains('remove')){
+                console.log("点击了删除按钮");
+                data.splice(i,1);  // 操作数据 ，然后再渲染视图；
+                renderDom(data);
+              }
+
+          }
+
+       
+       
+        listEle.appendChild(liEle);
+      }
+
+    }
+
+
+  </script>
+</body>
+
+</html>

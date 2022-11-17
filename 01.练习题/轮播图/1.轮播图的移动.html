@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .showContainer {
+            width: 520px;
+            height: 280px;
+            border: 1px solid;
+            margin: 0 auto;
+            /* overflow: hidden; */
+            position: relative;
+        }
+
+        .imgShow {
+            width: 2600px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .imgShow img {
+            float: left;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="showContainer">
+        <div class="imgShow">
+            <!-- div存放 所有的图片 -->
+            <img src="./imgs/1t.png" alt="">
+            <img src="./imgs/2t.png" alt="">
+            <img src="./imgs/3t.png" alt="">
+            <img src="./imgs/4t.png" alt="">
+            <img src="./imgs/5t.png" alt="">
+        </div>
+
+    </div>
+
+    <script>
+        // 轮播图 ，需要让 imgshow 向左边移动就可以了。
+
+        var imgShowEle = document.querySelector(".imgShow");
+        /* 
+        0  ----》  -520
+        1 --- 》 -1040
+        2 ----》 -1560 
+        3 ----》   -(i+1)*520
+        
+        */
+
+        var index = 0;  // 代表 图片所在的下标
+
+        setInterval(function () {
+            move(imgShowEle, -(index + 1) * 520, "left", function () {
+                console.log("运动完成");
+                index++;
+                // console.log(index);
+                if(index==5){
+                    index = 0;
+                    imgShowEle.style.left = "0";
+                }
+            })
+        }, 2000)
+
+
+
+        function move(ele, target, dir, cb) {
+            var timer = setInterval(function () {
+                var num = parseInt(getComputedStyle(ele, null)[dir]);
+                // console.log(num);
+                if (num == target) {
+                    cb && cb();
+                    clearInterval(timer);
+                } else {
+                    num += 10 * (target > num ? 1 : -1);
+                    ele.style[dir] = num + "px";
+                }
+            }, 10)
+        }
+    </script>
+
+</body>
+
+</html>

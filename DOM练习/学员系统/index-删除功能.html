@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="title">学生系统</div>
+        <div id="form">
+            <p>姓名<input id="username" type="text" value="张三123" /></p>
+            <p>年龄<input id="age" type="text" value="21" /></p>
+            <p>性别
+                <select id="gender">
+                    <option>男</option>
+                    <option>女</option>
+                    <option>你猜</option>
+                </select>
+            </p>
+            <p>
+                <input type="button" value="添加" id="addBtn" />
+                <input type="button" value="排序" id="sortBtn" />
+            </p>
+        </div>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // 获取 元素
+        var usernameEle = document.querySelector("#username");
+        var ageEle = document.querySelector("#age");
+        var genderEle = document.querySelector("#gender");
+        var addBtn = document.querySelector("#addBtn");
+
+        var tbodyEle = document.querySelector("tbody");
+
+        // 把事件委托给 父级的父级 tbody上
+        tbodyEle.onclick = function (e) {
+            var target = e.target;
+            if (target.classList.contains("del")) {
+                // console.log("点击了删除",target);
+                target.parentNode.remove(); // 删除父级 的tr元素；
+            }
+        }
+
+
+        // 点击添加按钮的时候 ，添加用户信息
+        addBtn.onclick = function () {
+            var username = usernameEle.value;
+            var gender = genderEle.value;
+            var age = ageEle.value;
+            // console.log(username,gender,age);
+            // 需要根据添加的的内容 组装成tr标签 然后添加到tbody里；
+            // 创建一个tr标签 
+            var trEle = document.createElement("tr");
+            trEle.innerHTML = "<td>" + username + "</td>" +
+                "<td>" + age + "</td>" +
+                "<td>" + gender + "</td>" +
+                "<td class='del'>删除</td>";
+
+            // 一、直接获取删除按钮，然后绑定删除事件
+            // 如何获取 删除按钮 ？
+            // document.querySelectorAll(".del")
+            // 在文档里查找 类名为 .del的元素   document 是查找的范围
+            // 在 生成的tr元素范围内 查找 类名为 .del的元素
+            // var delEle = trEle.querySelector(".del");
+            // // console.log(delEle);
+            // delEle.onclick = function(){
+            //     // console.log("点击了删除按钮");
+            //     // 需要删除 删除按钮的父级元素 tr元素
+            //     // console.log(this.parentNode);
+            //     this.parentNode.remove();
+            // }
+
+            // 二、事件委托
+            // trEle.onclick = function (e) {
+            //     var target = e.target;
+            //     if (target.classList.contains("del")) {
+            //         // console.log("点击了删除",target);
+            //         target.parentNode.remove(); // 删除父级 的tr元素；
+            //     }
+            // }
+
+            tbodyEle.appendChild(trEle);
+        }
+
+    </script>
+</body>
+
+</html>

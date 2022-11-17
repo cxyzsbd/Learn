@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>我是a页面</h1>
+     姓名是： <input type="text" class="username" /><br>
+     年龄是： <input type="text" class="age" /><br>
+    <button>点击我跳转到b页面</button>
+    <script>
+        // 对象 数据
+        var obj = {
+            myname:"zhangsan",
+            age:20
+        }
+
+        // 可以通过querystring 传参到另外一个页面
+        // 1.跳转到b页面  2. 携带参数 到b页面里去
+        var btn = document.querySelector("button");
+        var usernameEle = document.querySelector(".username");
+        var ageEle = document.querySelector(".age");
+        btn.onclick = function(){
+            var username = usernameEle.value;
+            var age = ageEle.value;
+            window.location.href = "./b.html?myname="+username+"&age="+age;
+        }
+
+
+
+    </script>
+</body>
+</html>

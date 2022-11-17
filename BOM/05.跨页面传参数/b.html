@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>我是b页面 </h1>
+
+    <script>
+        //获取a页面传入的参数  
+        console.log(window.location.search);
+        // decodeURIComponent 可以把地址栏里中文的乱码转换回来
+        var res = decodeURIComponent(window.location.search);
+        //var str  = "?myname=张三&age=21";  ---->{myname:"张三",age:21};
+        var str = res.substr(1);  // 去掉?号
+        console.log(str);  // myname=张三&age=21
+        var arr = str.split("&"); // [myname=张三,age=21];
+        var obj = {};  // 存放数据
+        for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);  // myname=张三  、 age = 21;
+            var lineArr = arr[i].split("="); // [myname,张三]    [age,21];
+            obj[lineArr[0]] = lineArr[1];
+        }
+        console.log(obj);
+
+        document.querySelector("h1").innerHTML = "姓名是"+obj.myname + "年龄是"+obj.age;
+
+
+
+
+        /* 
+        总结 ： 
+            跳转的时候传递querystring参数
+             另外一个页面通过 window.location.serach 获取参数处理参数,达到跨页面传参的目录
+
+        
+        
+        
+        */
+
+    </script>
+</body>
+
+</html>

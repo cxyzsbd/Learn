@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+
+    <script>
+
+        // 不停的改变box元素的 left 值 
+        var boxEle = document.querySelector(".box");
+
+        boxEle.onclick = function () {
+            var that = this;
+            // 回调地狱：回调函数出现层层嵌套。可维护性差 
+            move(this, 500, "left", function () {
+                console.log("运动结束", this)
+                move(that, 500, "top", function () {
+                    console.log("第二次运动结束");
+                    move(that, 0, "left", function () {
+                        console.log("第三次结束")
+                        move(that, 0, "top",function(){
+                            console.log("第四次结束了");
+                        })
+                    })
+                });
+            });
+        }
+
+
+
+
+        function move(ele, target, dir, cb) {
+            function fn() {  // 用来做递归
+                setTimeout(function () {
+                    // 先获取 当前的left 值 ，然后再当前的left 值 基础上 加一个值，设置成 当前元素的left值 ；
+                    var num = parseInt(getComputedStyle(ele, null)[dir]);
+                    console.log(num);
+                    if (num == target) {
+                        // 停止动画 
+                        // 满足条件的时候 不在调用 fn 函数，那么 settimeout 不会重复执行了
+                        cb && cb();
+                    }else{
+                        fn();
+                    }
+
+                    num += 10 * (target > num ? 1 : -1);
+                    ele.style[dir] = num + "px";
+                }, 10)
+            }
+            fn();
+
+        }
+    </script>
+</body>
+
+</html>

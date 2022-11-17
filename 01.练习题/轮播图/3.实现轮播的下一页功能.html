@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .showContainer {
+            width: 520px;
+            height: 280px;
+            border: 1px solid;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .imgShow {
+            width: 2600px;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .imgShow img {
+            float: left;
+
+        }
+
+        .nextorpre {
+            width: 100%;
+            height: 50px;
+            position: absolute;
+            top: 40%;
+            font-size: 40px;
+            color: red;
+            z-index: 10;
+        }
+
+        .next {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="showContainer">
+        <div class="nextorpre">
+            <span class="pre">
+                < </span>
+                    <span class="next">></span>
+        </div>
+        <div class="imgShow">
+            <!-- div存放 所有的图片 -->
+            <img src="./imgs/1t.png" alt="">
+            <img src="./imgs/2t.png" alt="">
+            <img src="./imgs/3t.png" alt="">
+            <img src="./imgs/4t.png" alt="">
+            <img src="./imgs/5t.png" alt="">
+        </div>
+
+    </div>
+
+    <script>
+        // 实现下一页功能 ；
+        // 1.鼠标移入的时候 停止轮播  ，鼠标移除的时候 开启轮播自动播放。
+        // 2.点击下一页的时候 切换下一个图；
+
+        var imgShowEle = document.querySelector(".imgShow");
+        var showContainerEle = document.querySelector(".showContainer");
+
+        // 获取下一页的按钮
+        var nextEle = document.querySelector(".next");
+
+        var index = 0;  // 代表 图片所在的下标
+
+
+
+        // 通过js 复制第一张图 ，然后放在最后一张图后面
+        function copyFirstImg() {
+            // 获取第一张图 ；
+            var firstImg = imgShowEle.firstElementChild;
+            // 复制第一张图 ；
+            var copyFirstImg = firstImg.cloneNode(true);
+            // 修改容器的宽度
+            imgShowEle.style.width = "3120px";
+            imgShowEle.appendChild(copyFirstImg);
+
+        }
+
+
+        copyFirstImg();
+        autoPlay();
+
+        // 下一页按钮绑定点击事件
+        nextEle.onclick = function () {
+            console.log("点击了下一页");
+            move(imgShowEle, -(index + 1) * 520, "left", function () {
+                console.log("运动完成");
+                index++;
+                // console.log(index);
+                if (index == 5) {
+                    index = 0;
+                    imgShowEle.style.left = "0";
+                }
+            })
+        }
+
+
+        function autoPlay() {
+            var timer = setInterval(function () {
+                move(imgShowEle, -(index + 1) * 520, "left", function () {
+                    console.log("运动完成");
+                    index++;
+                    // console.log(index);
+                    if (index == 5) {
+                        index = 0;
+                        imgShowEle.style.left = "0";
+                    }
+                })
+            }, 2000)
+
+            // 鼠标移入轮播图里的时候 停止 轮播 ，鼠标移除的时候 开启轮播 
+            showContainerEle.onmouseenter = function () {
+                console.log("鼠标移入了");
+                // 停止轮播图
+                clearInterval(timer);
+            }
+
+            // 鼠标离开轮播图的时候 轮播图需要继续自动播放
+
+            showContainerEle.onmouseleave = function () {
+                console.log("鼠标离开了");
+                autoPlay();
+            }
+        }
+
+
+
+
+        function move(ele, target, dir, cb) {
+            var timer = setInterval(function () {
+                var num = parseInt(getComputedStyle(ele, null)[dir]);
+                // console.log(num);
+                if (num == target) {
+                    cb && cb();
+                    clearInterval(timer);
+                } else {
+                    num += 10 * (target > num ? 1 : -1);
+                    ele.style[dir] = num + "px";
+                }
+            }, 10)
+        }
+    </script>
+
+</body>
+
+</html>

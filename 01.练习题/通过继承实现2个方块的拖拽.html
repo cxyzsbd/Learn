@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            position: absolute;
+            left: 300px;
+            top: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+    <div class="box2"></div>
+    <script>
+        // 通过继承实现2个 方块的拖拽 ；
+        // 第一个方块 可以任意拖动  第二个方块只能在一个范围内拖动 。
+        /* 
+            直接写 ：复用性不高 
+            函数封装 ： 提高复用性 
+            构造函数 ： 拥有一个 prototype 公共空间。
+        */
+
+        // function Person(){
+        //     var num = "helo"
+        //     var fn = function(){  // 调用100次
+        //         console.log("fn")
+        //     }
+        // }
+
+        /* 
+            直接写 ： 
+        */
+        // var boxEle = document.querySelector(".box");
+        // drag(boxEle);
+        // var boxEle2 = document.querySelector(".box2")
+        // drag(boxEle2);
+        // function drag(boxEle) {
+        //     boxEle.onmousedown = function (e) {
+        //         var x = e.clientX - this.offsetLeft;
+        //         var y = e.clientY - this.offsetTop;
+        //         this.onmousemove = function (e) {
+        //             var xx = e.clientX;
+        //             var yy = e.clientY;
+        //             this.style.left = xx - x + "px";
+        //             this.style.top = yy - y + "px";
+        //         }
+        //     }
+        //     boxEle.onmouseup = function () {
+        //         this.onmousemove = "";
+        //     }
+        // }
+
+
+
+
+
+        // 构造函数的改造 
+        // 是一个 拖拽对象 属性 需要拖动的元素；
+        function Drag(ele) {
+            // 属性 就是需要拖动的元素
+            this.ele = ele;
+            this.downFn();
+            this.upFn();
+        }
+
+
+        // 对象的方法 
+        // 鼠标按下的方法
+        Drag.prototype.downFn = function () {
+            // console.log(this)
+            var that = this;
+            this.ele.onmousedown = function (e) {
+                // console.log(111);
+                console.log(this);
+                var x = e.clientX - this.offsetLeft;
+                var y = e.clientY - this.offsetTop;
+                that.moveFn(x, y);
+            }
+        }
+
+        // 鼠标移动的方法
+        Drag.prototype.moveFn = function (x, y) {
+            this.ele.onmousemove = function (e) {
+                var xx = e.clientX;
+                var yy = e.clientY;
+
+                this.style.left = xx - x + "px";
+                this.style.top = yy - y + "px";
+            }
+        }
+
+        // 鼠标抬起的方法 
+        Drag.prototype.upFn = function () {
+            this.ele.onmouseup = function () {
+                this.onmousemove = "";
+            }
+        }
+
+
+
+        var boxEle = document.querySelector(".box");
+        new Drag(boxEle)
+
+        // var boxEle2 = document.querySelector(".box2");
+        // new Drag(boxEle2);
+
+
+
+        // 再创建一个 子类 子构造函数 ，继承 Drag的功能 ，且扩展 限定范围的功能
+
+
+        // 构造函数的继承
+        function SonDrag(ele) {
+            Drag.call(this, ele);
+        }
+
+
+        // 原型的继承
+        function Link() { };
+        Link.prototype = Drag.prototype;
+        SonDrag.prototype = new Link();  // SonDrag.prototype的 constructor会被覆盖 
+        SonDrag.prototype.constructor = SonDrag;
+
+        // 扩展 sonDrag的拖拽功能 ，需要在拖拽的时候给边界的控制；
+        SonDrag.prototype.moveFn = function (x, y) {
+            this.ele.onmousemove = function (e) {
+                var xx = e.clientX;
+                var yy = e.clientY;
+
+                // 拖拽范围的限定 
+                var disx = xx - x;
+                var disy = yy - y;
+
+                // 左边边界
+                if (disx <= 0) {
+                    disx = 0;
+                }
+
+                // 右边边界
+                if (disx >= (window.innerWidth - this.offsetWidth)) {
+                    disx = window.innerWidth - this.offsetWidth
+                }
+
+                // 上边边界
+                if (disy <= 0) {
+                    disy = 0;
+                }
+
+                // 下边边界
+                if (disy > (window.innerHeight - this.offsetHeight)) {
+                    disy = window.innerHeight - this.offsetHeight;
+                }
+
+                this.style.left = disx + "px";
+                this.style.top = disy + "px";
+            }
+        }
+
+
+        var boxEle2 = document.querySelector(".box2");
+        new SonDrag(boxEle2);
+
+
+
+
+    </script>
+</body>
+
+</html>

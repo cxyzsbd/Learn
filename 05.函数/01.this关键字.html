@@ -1,22 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-  /*      
+      /*      
 this关键字指向,谁调用就指向谁:
         - 以函数形式调用,this是window
         - 以方法形式调用,this是调用方法的对象
         - 构造函数内部,this指向实例化的对象
         - 事件内部,触发事件的事件源
         - 箭头函数没有自己的this,由父级(上层)作用域决定(只穿透一层)
-        
-        */
+
+
+        改变this指向：call \ apply \ bind
+
+
+
+一、 call方法改变this指向
+如果传null和undefined,那么函数内部this会指向 window
+如果传字符串和数字类型this,会执行字符串和数字的包装对象
+
+fn.call(需要改变的this值,参数1,参数2,参数3...); 
+
+实现一个call方法
+Function.prototype.myCall = function(arg,...args){
+  arg.myfn = this
+  //把fn的函数方法添加到arg对象上面
+  let res = arg.myfn(...args)
+  //执行myfn函数
+  delete arg.myfn;
+  return res
+}
+
+二、apply方法改变this指向
+和call的区别,参数的传递,apply方法参数需要放在数组里传递
+
+fn.apply(obj,[10,20])
+
+实现一个apply方法
+Function.prototype.myApply = function(arg,args){
+  let argContext = arg || window
+//传入的是undefined或者是null,argContext就是window
+
+  argContext = Object(argContext);
+  argContext.myfn = this;
+  let res = argContext.myfn(...args);
+  delete argContext.myfn;
+  return res;
+}
+
+三、bind改变this指向
+bind的使用场景:某些前提下不能执行函数,但是需要改变函数的指向
+函数放在框架或者底层内部调用.bind方法被调用时会创建一个新函数
+
+fn.bind(arg,参数1,参数2...)()
+或者
+fn.bind(arg)(参数1,参数2...)
+
+实现一个bind：
+Function.prototype.myBind = function(arg){
+  let argContext = arg || window;
+  argContext = Object(argContext);
+  argContext.myfn = this;
+  return function(...args){
+    let res = argContext.myfn(...args);
+    delete argContext.myfn;
+    return res
+  }
+}
+
+ function fn(x,y,z){
+            console.log(this,x,y,z)
+        }
+  fn.mybind({name:"改变this的对象"})(1,2,3)
+
+
+
+*/
     </script>
-</body>
+  </body>
 </html>

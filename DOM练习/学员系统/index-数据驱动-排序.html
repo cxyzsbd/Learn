@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./index.css">
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="title">学生系统</div>
+        <div id="form">
+            <p>姓名<input id="username" type="text" value="张三123" /></p>
+            <p>年龄<input id="age" type="text" value="21" /></p>
+            <p>性别
+                <select id="gender">
+                    <option>男</option>
+                    <option>女</option>
+                    <option>你猜</option>
+                </select>
+            </p>
+            <p>
+                <input type="button" value="添加" id="addBtn" />
+                <input type="button" value="排序" id="sortBtn" />
+            </p>
+        </div>
+        <table id="table">
+            <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+
+      /* 
+      排序 ： 数据的排序
+      
+      var arr = [{username:'张三',age:20,gender:"男"},{username:'李四',age:25,gender:"男"},{username:'王五',age:21,gender:"男"},{username:'赵四',age:22,gender:"男"}]
+      
+      
+      */
+
+
+        var usernameEle = document.querySelector("#username");
+        var ageEle = document.querySelector("#age");
+        var genderEle = document.querySelector("#gender");
+        var addBtn = document.querySelector("#addBtn");
+        var tbodyEle = document.querySelector("tbody");
+
+        var sortBtnEle = document.querySelector("#sortBtn");
+
+        /* 
+            // 对象数组 username、age、gender 字段；
+            //var arr  = ["张三","李四","王五"];
+            var arr = [{username:'张三',age:20,gender:"男"},{username:'李四',age:25,gender:"男"},{username:'王五',age:21,gender:"男"},{username:'赵四',age:22,gender:"男"}]
+        
+        */
+
+        var arr = []; // 存放添加的数据
+        addBtn.onclick = function () {
+            var username = usernameEle.value;
+            var gender = genderEle.value;
+            var age = ageEle.value;
+            
+            arr.push({
+                username:username,
+                age:age,
+                gender:gender
+            })
+            console.log(arr);
+            renderDom(arr);
+        }
+
+
+        // 排序操作
+        sortBtnEle.onclick = function(){
+            console.log("点击了排序");
+            arr.sort(function(a,b){
+                return a.age - b.age;
+            })
+            console.log(arr);
+            renderDom(arr); // 渲染排序的内容；
+        }
+
+        // 定义一个函数，可以根据数据渲染视图 ；
+
+        /* 
+             var arr = [{username:'张三',age:20,gender:"男"},{username:'李四',age:25,gender:"男"},{username:'王五',age:21,gender:"男"},{username:'赵四',age:22,gender:"男"}]
+        */
+
+        // var arr = [{username:'张三',age:20,gender:"男"},{username:'李四',age:25,gender:"男"},{username:'李四',age:25,gender:"男"}];
+        // renderDom(arr);
+        function renderDom(arr){
+            tbodyEle.innerHTML = ""; // 清空之前的内容
+            for(let i=0;i<arr.length;i++){
+                // arr[i]
+                var trEle = document.createElement("tr");
+                trEle.innerHTML = "<td>"+arr[i].username+"</td><td>"+arr[i].age+"</td><td>"+arr[i].gender+"</td><td class='del'>删除</td>";
+                var  delEle = trEle.querySelector(".del");
+                delEle.onclick = function(){
+                    console.log("点击了删除按钮",i);
+                    // 根据索引 i 删除arr里的数据
+                    arr.splice(i,1);
+                    console.log(arr);
+                    renderDom(arr); // 根据数据渲染一下；
+                }
+                tbodyEle.appendChild(trEle);
+            }
+        }
+    </script>
+</body>
+
+</html>

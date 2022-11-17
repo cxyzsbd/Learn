@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: red
+        }
+        .box::after{
+            content: "";
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" style="background:blue;">123</div>
+    <script>
+/* 
+1.获取和设置行内样式: 元素.style.样式名称;
+style:针对行内样式的获取或者设置;
+
+获取行内样式
+    var boxEle = document.querySelector(".box");
+    document.onclick = function(){
+    // var b =  boxEle.style.background;  
+    var b = boxEle.style['background'];
+        console.log(b);
+    }
+
+注意: .点语法不支持解析变量,变量解析需要[]中括号  */
+
+var obj  ={
+    name:"hello",
+    age:20
+}
+
+var myage = "age"
+console.log(obj.myage); //undefined
+// obj.myage => obj['myage'] 不能解析,转为键名字符串
+console.log(obj[myage])//20
+//myage变量 => 解析 => obj['age'] 与obj内age一致.
+
+
+
+//2.获取非行间样式: 预定义函数
+getComputedStyle(获取元素,伪类样式)['样式名称']
+
+var boxEle = document.querySelector(".box");
+boxEle.onclick = function(){
+   var w =  getComputedStyle(boxEle,null)['width'];
+   console.log(w);
+   this.style.background = "blue";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
