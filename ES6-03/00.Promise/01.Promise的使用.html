@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /* 
+一、改变状态的三种方式
+const p1 = new Promise((resolve, reject) => {
+    第一种方式
+    resolve()
+
+    第二种方式
+    reject()
+
+    第三种方式
+    throw new RangeError('范围错误')
+    throw 'aaa'
+})
+
+二、关于then方法的返回值
+1. then方法的返回值不会受return的影响,结果永远是一个promise实例
+
+2. 如果是普通数据,那么返回成功状态,把数据放在结果中
+   如果return的是promise的实例,那么返回的状态和结果由内部返回的实例决定
+
+3. 如果抛出了异常,那么返回的实例状态是rejected,结果是报错内容
+
+4. 如果返回的是一个pending状态的实例,那么会断链.
+*/
+      const p1 = new Promise((resolve, reject) => {
+        reject("error");
+      });
+
+      const res = p1.then((data) => {
+        return new Promise((resolve, reject) => {
+          resolve("内层的resolve");
+        });
+        // throw new Error('报错了')
+      });
+
+      console.log(res);
+
+    </script>
+  </body>
+</html>
